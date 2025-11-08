@@ -36,7 +36,7 @@ const About = () => {
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
               Hakkımızda
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-[hsl(215,45%,25%)] to-[hsl(43,96%,56%)] mb-6"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-[hsl(355,65%,45%)] to-[hsl(45,100%,55%)] mb-6"></div>
             
             <p className="text-gray-600 mb-4 leading-relaxed">
               YILDIZAY İnşaat olarak, 20 yılı aşkın tecrübemizle konut, ticari yapı ve altyapı 
