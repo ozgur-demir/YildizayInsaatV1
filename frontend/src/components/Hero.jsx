@@ -16,7 +16,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070')] bg-cover bg-center"></div>
-        {/* Sophisticated Gradient Overlay - Brand Colors */}
+        {/* Sophisticated Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-[hsl(0,0%,15%)]/85 via-[hsl(355,65%,20%)]/60 to-[hsl(30,8%,15%)]/90"></div>
         {/* Subtle warm pattern */}
         <div className="absolute inset-0 opacity-5" style={{
@@ -29,13 +29,13 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div className="text-left">
-            {/* Badge with brand colors */}
+            {/* Badge - More appropriate for new company */}
             <div className="inline-flex items-center px-5 py-2.5 bg-[hsl(45,100%,55%)]/15 backdrop-blur-sm border border-[hsl(45,100%,55%)]/30 rounded-full mb-8 animate-fade-in-up">
               <div className="w-2 h-2 bg-[hsl(45,100%,55%)] rounded-full mr-3 animate-pulse"></div>
-              <span className="text-[hsl(45,100%,60%)] text-sm font-bold tracking-wider">20+ YIL SEKTÖR LİDERİ</span>
+              <span className="text-[hsl(45,100%,60%)] text-sm font-bold tracking-wider">PROFESYONEL İNŞAAT HİZMETLERİ</span>
             </div>
 
-            {/* Main Heading - Using brand red and gold */}
+            {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               <span className="block mb-2">İnşaatta</span>
               <span className="block mb-2 bg-gradient-to-r from-white via-[hsl(40,95%,70%)] to-[hsl(45,100%,55%)] bg-clip-text text-transparent">
@@ -54,7 +54,7 @@ const Hero = () => {
               modern yaşam alanlarını hayata geçiriyoruz.
             </p>
 
-            {/* CTA Buttons - Brand colors */}
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
               <button 
                 onClick={() => scrollToSection('projects')}
@@ -76,29 +76,41 @@ const Hero = () => {
               </button>
             </div>
 
-            {/* Trust Indicators - Brand styled */}
-            <div className="flex items-center gap-8 pt-6 border-t border-white/20 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-              <div className="text-left">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-white to-[hsl(45,100%,60%)] bg-clip-text text-transparent mb-1">150+</div>
-                <div className="text-sm text-white/70">Tamamlanan Proje</div>
+            {/* Value Propositions - Instead of stats */}
+            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/20 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+              <div className="text-center">
+                <div className="w-14 h-14 mx-auto mb-3 bg-[hsl(45,100%,55%)]/15 rounded-xl flex items-center justify-center">
+                  <svg className="w-7 h-7 text-[hsl(45,100%,55%)]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="text-sm text-white/90 font-semibold">Kalite Garantisi</div>
               </div>
-              <div className="text-left">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-white to-[hsl(45,100%,60%)] bg-clip-text text-transparent mb-1">500+</div>
-                <div className="text-sm text-white/70">Mutlu Müşteri</div>
+              <div className="text-center">
+                <div className="w-14 h-14 mx-auto mb-3 bg-[hsl(45,100%,55%)]/15 rounded-xl flex items-center justify-center">
+                  <svg className="w-7 h-7 text-[hsl(45,100%,55%)]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="text-sm text-white/90 font-semibold">Zamanında Teslimat</div>
               </div>
-              <div className="text-left">
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-br from-white to-[hsl(45,100%,60%)] bg-clip-text text-transparent mb-1">20+</div>
-                <div className="text-sm text-white/70">Yıl Tecrübe</div>
+              <div className="text-center">
+                <div className="w-14 h-14 mx-auto mb-3 bg-[hsl(45,100%,55%)]/15 rounded-xl flex items-center justify-center">
+                  <svg className="w-7 h-7 text-[hsl(45,100%,55%)]" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                  </svg>
+                </div>
+                <div className="text-sm text-white/90 font-semibold">Uzman Ekip</div>
               </div>
             </div>
           </div>
 
-          {/* Right Content - Feature Card */}
+          {/* Right Content - Simpler card */}
           <div className="hidden lg:block">
             <div className="relative animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-              {/* Glassmorphism Card with brand accent */}
+              {/* Glassmorphism Card */}
               <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl animate-float">
-                {/* Gold glow */}
+                {/* Glows */}
                 <div className="absolute -top-6 -right-6 w-32 h-32 bg-[hsl(45,100%,55%)] rounded-full opacity-20 blur-3xl"></div>
                 <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[hsl(355,65%,50%)] rounded-full opacity-15 blur-3xl"></div>
                 
@@ -113,7 +125,7 @@ const Hero = () => {
                     <span className="px-3 py-1 bg-[hsl(45,100%,55%)]/20 text-[hsl(45,100%,60%)] text-xs font-bold rounded-full border border-[hsl(45,100%,55%)]/30">2024</span>
                   </div>
                   <h3 className="text-2xl font-bold text-white">Modern Rezidans Kompleksi</h3>
-                  <p className="text-white/70 text-sm leading-relaxed">200 daireli lüks yaşam alanı projesi üstün kalite standartlarıyla tamamlandı.</p>
+                  <p className="text-white/70 text-sm leading-relaxed">Üstün kalite standartları ve modern mimari tasarım ile tamamlanan lüks yaşam alanı projesi.</p>
                   <div className="flex items-center justify-between pt-4 border-t border-white/10">
                     <div className="flex items-center space-x-2">
                       <svg className="w-5 h-5 text-[hsl(45,100%,55%)]" fill="currentColor" viewBox="0 0 20 20">
@@ -121,7 +133,6 @@ const Hero = () => {
                       </svg>
                       <span className="text-white/80 text-sm font-semibold">Premium Kalite</span>
                     </div>
-                    <span className="text-[hsl(45,100%,55%)] text-xs font-bold">+50 Ekip</span>
                   </div>
                 </div>
               </div>
