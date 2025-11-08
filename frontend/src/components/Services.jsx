@@ -117,8 +117,8 @@ const Services = () => {
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-orange-50 to-orange-100 group-hover:from-[hsl(4,75%,50%)] group-hover:to-[hsl(45,100%,47%)] transition-all duration-300">
-                <div className="w-9 h-9 text-[hsl(4,75%,50%)] group-hover:text-white transition-colors">
+              <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-slate-100 to-slate-200 group-hover:from-[hsl(215,45%,25%)] group-hover:to-[hsl(215,40%,30%)] transition-all duration-300">
+                <div className="w-9 h-9 text-[hsl(215,45%,25%)] group-hover:text-white transition-colors">
                   {service.icon}
                 </div>
               </div>
