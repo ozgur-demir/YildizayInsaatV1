@@ -101,10 +101,10 @@ const Header = ({ isScrolled }) => {
               </button>
             </nav>
 
-            {/* Mobile Menu Button - NEW DESIGN */}
+            {/* Mobile Menu Button - Always on top */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden relative w-10 h-10 flex items-center justify-center z-[100] pointer-events-auto"
+              className="lg:hidden relative w-10 h-10 flex items-center justify-center z-[110]"
               aria-label="Toggle menu"
             >
               <div className="w-6 h-5 flex flex-col justify-between">
