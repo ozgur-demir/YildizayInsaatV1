@@ -89,7 +89,7 @@ const Header = ({ isScrolled }) => {
           {/* Mobile Menu Button */}
           <button 
             id="mobileMenuToggle"
-            className="lg:hidden flex flex-col space-y-1.5 p-2 z-50 relative"
+            className="lg:hidden flex flex-col space-y-1.5 p-2 z-[100] relative"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
