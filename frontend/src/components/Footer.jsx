@@ -2,7 +2,7 @@ const Footer = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const headerHeight = 90;
+      const headerHeight = 180; // Updated for larger header
       const elementPosition = element.offsetTop - headerHeight;
       window.scrollTo({
         top: elementPosition,
