@@ -89,22 +89,22 @@ const Header = ({ isScrolled }) => {
           {/* Mobile Menu Button */}
           <button 
             id="mobileMenuToggle"
-            className="lg:hidden flex flex-col space-y-1.5 p-2 z-50"
+            className="lg:hidden flex flex-col space-y-1.5 p-2 z-50 relative"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
             <span className={`block w-7 h-0.5 transition-all duration-300 ${
-              isScrolled ? 'bg-[hsl(30,8%,25%)]' : 'bg-white'
+              mobileMenuOpen ? 'bg-white' : (isScrolled ? 'bg-[hsl(30,8%,25%)]' : 'bg-white')
             } ${
               mobileMenuOpen ? 'rotate-45 translate-y-2' : ''
             }`}></span>
             <span className={`block w-7 h-0.5 transition-all duration-300 ${
-              isScrolled ? 'bg-[hsl(30,8%,25%)]' : 'bg-white'
+              mobileMenuOpen ? 'bg-white' : (isScrolled ? 'bg-[hsl(30,8%,25%)]' : 'bg-white')
             } ${
               mobileMenuOpen ? 'opacity-0' : ''
             }`}></span>
             <span className={`block w-7 h-0.5 transition-all duration-300 ${
-              isScrolled ? 'bg-[hsl(30,8%,25%)]' : 'bg-white'
+              mobileMenuOpen ? 'bg-white' : (isScrolled ? 'bg-[hsl(30,8%,25%)]' : 'bg-white')
             } ${
               mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
             }`}></span>
