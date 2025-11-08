@@ -32,7 +32,7 @@ const Header = ({ isScrolled }) => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      <header className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
         isScrolled 
           ? 'bg-white/98 backdrop-blur-lg shadow-lg py-3' 
           : 'bg-gradient-to-b from-[hsl(0,0%,15%)]/40 to-transparent py-5'
