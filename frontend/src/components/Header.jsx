@@ -27,7 +27,7 @@ const Header = ({ isScrolled }) => {
             <img 
               src="https://customer-assets.emergentagent.com/job_6474a059-a22b-4c37-b1ef-e3bebee970f4/artifacts/ihq1edzo_logo.png" 
               alt="YILDIZAY Logo" 
-              className="h-14 w-14 md:h-16 md:w-16 object-contain hover:scale-105 transition-transform duration-300 cursor-pointer"
+              className="h-20 w-20 md:h-24 md:w-24 object-contain hover:scale-105 transition-transform duration-300 cursor-pointer"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             />
           </div>
