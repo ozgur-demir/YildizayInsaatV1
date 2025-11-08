@@ -1,180 +1,467 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
-        <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-        <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-        <title>Emergent | Fullstack App</title>
-        <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
-        <!--
-        These two scripts have been added for the testing, please do not edit or remove them
-        -->
-        <script src="https://unpkg.com/rrweb@latest/dist/rrweb.min.js"></script>
-        <script src="https://d2adkz2s9zrlge.cloudfront.net/rrweb-recorder-20250919-1.js"></script>
-        <!--
-        These two scripts have been added for the Visual Edits, please do not edit or remove them
-        -->
-        <script>
-            // Only load visual edit scripts when inside an iframe and visual edits are enabled
-            if (window.self !== window.top && '%REACT_APP_ENABLE_VISUAL_EDITS%' === 'true') {
-                // Load debug monitor script
-                var debugScript = document.createElement('script');
-                debugScript.src = 'https://assets.emergent.sh/scripts/debug-monitor.js';
-                document.head.appendChild(debugScript);
-
-                // Configure Tailwind
-                window.tailwind = window.tailwind || {};
-                tailwind.config = {
-                    corePlugins: { preflight: false },
-                };
-
-                // Load Tailwind CDN
-                var tailwindScript = document.createElement('script');
-                tailwindScript.src = 'https://cdn.tailwindcss.com';
-                document.head.appendChild(tailwindScript);
-            }
-        </script>
-    </head>
-    <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
-        <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-        <a
-            id="emergent-badge"
-            target="_blank"
-            href="https://app.emergent.sh/?utm_source=emergent-badge"
-            style="
-                display: flex !important;
-                align-items: center !important;
-                position: fixed !important;
-                bottom: 20px;
-                right: 20px;
-                text-decoration: none;
-                padding: 6px 10px;
-                font-family: -apple-system, BlinkMacSystemFont,
-                    &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell,
-                    &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;,
-                    sans-serif !important;
-                font-size: 12px !important;
-                z-index: 9999 !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-                border-radius: 8px !important;
-                background-color: #ffffff !important;
-                border: 1px solid rgba(255, 255, 255, 0.25) !important;
-            "
-        >
-            <div
-                style="display: flex; flex-direction: row; align-items: center"
-            >
-                <img
-                    style="width: 20px; height: 20px; margin-right: 8px"
-                    src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4"
-                />
-                <p
-                    style="
-                        color: #000000;
-                        font-family: -apple-system, BlinkMacSystemFont,
-                            &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu,
-                            Cantarell, &quot;Open Sans&quot;,
-                            &quot;Helvetica Neue&quot;, sans-serif !important;
-                        font-size: 12px !important;
-                        align-items: center;
-                        margin-bottom: 0;
-                    "
-                >
-                    Made with Emergent
-                </p>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="YILDIZAY İnşaat - Konut, Yapı ve İnşaat Hizmetleri">
+    <title>YILDIZAY İnşaat | Konut - Yapı - İnşaat</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-wrapper">
+                    <img src="https://customer-assets.emergentagent.com/job_6474a059-a22b-4c37-b1ef-e3bebee970f4/artifacts/ihq1edzo_logo.png" alt="YILDIZAY Logo" class="logo" loading="eager">
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="#about" class="nav-link">Hakkımızda</a></li>
+                        <li><a href="#services" class="nav-link">Hizmetler</a></li>
+                        <li><a href="#projects" class="nav-link">Projeler</a></li>
+                        <li><a href="#news" class="nav-link">Haberler</a></li>
+                        <li><a href="#contact" class="nav-link">İletişim</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-        </a>
-        <script>
-            !(function (t, e) {
-                var o, n, p, r;
-                e.__SV ||
-                    ((window.posthog = e),
-                    (e._i = []),
-                    (e.init = function (i, s, a) {
-                        function g(t, e) {
-                            var o = e.split(".");
-                            2 == o.length && ((t = t[o[0]]), (e = o[1])),
-                                (t[e] = function () {
-                                    t.push(
-                                        [e].concat(
-                                            Array.prototype.slice.call(
-                                                arguments,
-                                                0,
-                                            ),
-                                        ),
-                                    );
-                                });
-                        }
-                        ((p = t.createElement("script")).type =
-                            "text/javascript"),
-                            (p.crossOrigin = "anonymous"),
-                            (p.async = !0),
-                            (p.src =
-                                s.api_host.replace(
-                                    ".i.posthog.com",
-                                    "-assets.i.posthog.com",
-                                ) + "/static/array.js"),
-                            (r =
-                                t.getElementsByTagName(
-                                    "script",
-                                )[0]).parentNode.insertBefore(p, r);
-                        var u = e;
-                        for (
-                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
-                                u.people = u.people || [],
-                                u.toString = function (t) {
-                                    var e = "posthog";
-                                    return (
-                                        "posthog" !== a && (e += "." + a),
-                                        t || (e += " (stub)"),
-                                        e
-                                    );
-                                },
-                                u.people.toString = function () {
-                                    return u.toString(1) + ".people (stub)";
-                                },
-                                o =
-                                    "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
-                                        " ",
-                                    ),
-                                n = 0;
-                            n < o.length;
-                            n++
-                        )
-                            g(u, o[n]);
-                        e._i.push([i, s, a]);
-                    }),
-                    (e.__SV = 1));
-            })(document, window.posthog || []);
-            posthog.init("phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE", {
-                api_host: "https://us.i.posthog.com",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
-            });
-        </script>
-    </body>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070" alt="Construction Site" class="hero-image" loading="eager">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title animate-fade-in">İnşaatta Güvenin Adresi</h1>
+                <p class="hero-subtitle animate-fade-in-delay">Modern yaşam alanları ve kurumsal projeler için profesyonel çözümler</p>
+                <div class="hero-buttons animate-fade-in-delay-2">
+                    <a href="#projects" class="btn btn-primary">Projelerimiz</a>
+                    <a href="#contact" class="btn btn-secondary">Teklif Alın</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content scroll-animate">
+                    <h2 class="section-title">Hakkımızda</h2>
+                    <div class="title-underline"></div>
+                    <p class="about-text">YILDIZAY İnşaat olarak, 20 yılı aşkın tecrübemizle konut, ticari yapı ve altyapı projelerinde güvenilir çözümler sunuyoruz. Kalite, güvenlik ve zamanında teslimat prensipleriyle, her projede mükemmelliği hedefliyoruz.</p>
+                    <p class="about-text">Modern inşaat teknolojileri ve deneyimli kadromuzla, hayalinizdeki projeleri gerçeğe dönüştürüyoruz. Müşteri memnuniyeti odaklı yaklaşımımız ve titiz çalışma anlayışımızla sektörde fark yaratıyoruz.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Yıl Tecrübe</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Tamamlanan Proje</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Mutlu Müşteri</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image scroll-animate">
+                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931" alt="Construction Team" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title scroll-animate">Hizmetlerimiz</h2>
+                <div class="title-underline"></div>
+                <p class="section-description scroll-animate">Kapsamlı inşaat çözümleri ile projelerinizi hayata geçiriyoruz</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Konut İnşaatı</h3>
+                    <p class="service-description">Modern ve konforlu yaşam alanları tasarlayıp inşa ediyoruz. Villa, apartman ve toplu konut projelerinde uzman kadromuzla hizmetinizdeyiz.</p>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Ticari Yapılar</h3>
+                    <p class="service-description">İş merkezleri, alışveriş merkezi ve endüstriyel tesislerin yapımında geniş deneyime sahibiz. İşiniz için ideal mekanları yaratıyoruz.</p>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Tadilat & Renovasyon</h3>
+                    <p class="service-description">Eski yapılarınıza yeni hayat veriyoruz. Komple tadilat, restorasyon ve yenileme işlemlerinde profesyonel hizmet sunuyoruz.</p>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Altyapı Projeleri</h3>
+                    <p class="service-description">Yol, köprü, su ve kanalizasyon sistemleri gibi altyapı projelerinde deneyimli ekibimizle kaliteli çözümler üretiyoruz.</p>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Proje Danışmanlığı</h3>
+                    <p class="service-description">İnşaat projelerinizin planlamasından teslimata kadar her aşamada uzman danışmanlık hizmeti veriyoruz.</p>
+                </div>
+
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                            <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                            <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Mimari Tasarım</h3>
+                    <p class="service-description">Uzman mimar kadromuzla özgün ve fonksiyonel mimari tasarımlar hazırlıyor, hayalinizdeki projeyi şekillendiriyoruz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title scroll-animate">Tamamlanan Projeler</h2>
+                <div class="title-underline"></div>
+                <p class="section-description scroll-animate">Başarıyla tamamladığımız projelerden örnekler</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card scroll-animate">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070" alt="Modern Konut Kompleksi" loading="lazy">
+                        <div class="project-overlay">
+                            <h3 class="project-title">Modern Konut Kompleksi</h3>
+                            <p class="project-category">Konut</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070" alt="İş Merkezi" loading="lazy">
+                        <div class="project-overlay">
+                            <h3 class="project-title">İş Merkezi Plaza</h3>
+                            <p class="project-category">Ticari</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070" alt="Villa Projesi" loading="lazy">
+                        <div class="project-overlay">
+                            <h3 class="project-title">Lüks Villa Projesi</h3>
+                            <p class="project-category">Villa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069" alt="Ofis Binası" loading="lazy">
+                        <div class="project-overlay">
+                            <h3 class="project-title">Kurumsal Ofis Binası</h3>
+                            <p class="project-category">Ticari</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070" alt="Rezidans" loading="lazy">
+                        <div class="project-overlay">
+                            <h3 class="project-title">Rezidans Projesi</h3>
+                            <p class="project-category">Konut</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1974" alt="AVM Projesi" loading="lazy">
+                        <div class="project-overlay">
+                            <h3 class="project-title">Alışveriş Merkezi</h3>
+                            <p class="project-category">Ticari</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news section" id="news">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title scroll-animate">Haberler ve Duyurular</h2>
+                <div class="title-underline"></div>
+                <p class="section-description scroll-animate">Son gelişmeler ve projelerimizden haberler</p>
+            </div>
+            <div class="news-grid">
+                <article class="news-card scroll-animate">
+                    <div class="news-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076" alt="Yeni Proje" loading="lazy">
+                        <span class="news-date">15 Şubat 2024</span>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Yeni Modern Rezidans Projemiz Başlıyor</h3>
+                        <p class="news-excerpt">Şehrin kalbinde konumlanacak 200 daireli modern rezidans projemizin temeli atılıyor. Çevreci mimarisi ve sosyal donatılarıyla dikkat çeken proje...</p>
+                        <a href="#" class="news-link">Devamını Oku →</a>
+                    </div>
+                </article>
+
+                <article class="news-card scroll-animate">
+                    <div class="news-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=2070" alt="Ödül" loading="lazy">
+                        <span class="news-date">10 Şubat 2024</span>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Yılın İnşaat Firması Ödülü Bizim Oldu</h3>
+                        <p class="news-excerpt">İnşaat Sektörü Derneği tarafından düzenlenen törende "Yılın İnşaat Firması" ödülünü aldık. Kaliteli işçilik ve zamanında teslimat anlayışımız...</p>
+                        <a href="#" class="news-link">Devamını Oku →</a>
+                    </div>
+                </article>
+
+                <article class="news-card scroll-animate">
+                    <div class="news-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1590479773265-7464e5d48118?q=80&w=2070" alt="Teknoloji" loading="lazy">
+                        <span class="news-date">05 Şubat 2024</span>
+                    </div>
+                    <div class="news-content">
+                        <h3 class="news-title">Yeni Nesil İnşaat Teknolojilerine Yatırım</h3>
+                        <p class="news-excerpt">Akıllı bina yönetim sistemleri ve çevre dostu inşaat malzemelerine yapılan yatırımlarla projelerimize değer katmaya devam ediyoruz...</p>
+                        <a href="#" class="news-link">Devamını Oku →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title scroll-animate">İletişim</h2>
+                <div class="title-underline"></div>
+                <p class="section-description scroll-animate">Projeleriniz için bize ulaşın</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info scroll-animate">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Adres</h4>
+                            <p>Merkez Mahallesi, İnşaat Caddesi No:123<br>İstanbul, Türkiye</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Telefon</h4>
+                            <p>+90 212 555 12 34<br>+90 535 555 12 34</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>E-Posta</h4>
+                            <p>info@yildizay.com<br>iletisim@yildizay.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Çalışma Saatleri</h4>
+                            <p>Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi: 09:00 - 14:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form scroll-animate" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Ad Soyad *</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Telefon *</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" required>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">E-Posta *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Mesajınız *</label>
+                        <textarea id="message" name="message" rows="5" class="form-input form-textarea" required></textarea>
+                        <span class="form-error"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="https://customer-assets.emergentagent.com/job_6474a059-a22b-4c37-b1ef-e3bebee970f4/artifacts/ihq1edzo_logo.png" alt="YILDIZAY Logo" class="footer-logo" loading="lazy">
+                    <p class="footer-description">20 yılı aşkın tecrübemizle konut, ticari yapı ve altyapı projelerinde güvenilir çözümler sunuyoruz.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Hızlı Linkler</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">Hakkımızda</a></li>
+                        <li><a href="#services">Hizmetler</a></li>
+                        <li><a href="#projects">Projeler</a></li>
+                        <li><a href="#news">Haberler</a></li>
+                        <li><a href="#contact">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">Hizmetler</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Konut İnşaatı</a></li>
+                        <li><a href="#services">Ticari Yapılar</a></li>
+                        <li><a href="#services">Tadilat & Renovasyon</a></li>
+                        <li><a href="#services">Altyapı Projeleri</a></li>
+                        <li><a href="#services">Proje Danışmanlığı</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-title">İletişim</h4>
+                    <ul class="footer-contact">
+                        <li>Merkez Mahallesi, İnşaat Caddesi No:123</li>
+                        <li>İstanbul, Türkiye</li>
+                        <li><a href="tel:+902125551234">+90 212 555 12 34</a></li>
+                        <li><a href="mailto:info@yildizay.com">info@yildizay.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 YILDIZAY İnşaat. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Yukarı Çık">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
 </html>
