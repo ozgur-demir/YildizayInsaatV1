@@ -52,19 +52,19 @@ const About = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center p-5 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[hsl(215,45%,25%)] to-[hsl(43,96%,56%)] bg-clip-text text-transparent mb-1">
+                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[hsl(355,65%,45%)] to-[hsl(45,100%,55%)] bg-clip-text text-transparent mb-1">
                   20+
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Yıl Tecrübe</div>
               </div>
               <div className="text-center p-5 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[hsl(215,45%,25%)] to-[hsl(43,96%,56%)] bg-clip-text text-transparent mb-1">
+                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[hsl(355,65%,45%)] to-[hsl(45,100%,55%)] bg-clip-text text-transparent mb-1">
                   150+
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Tamamlanan Proje</div>
               </div>
               <div className="text-center p-5 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[hsl(215,45%,25%)] to-[hsl(43,96%,56%)] bg-clip-text text-transparent mb-1">
+                <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[hsl(355,65%,45%)] to-[hsl(45,100%,55%)] bg-clip-text text-transparent mb-1">
                   500+
                 </div>
                 <div className="text-sm text-gray-600 font-medium">Mutlu Müşteri</div>
