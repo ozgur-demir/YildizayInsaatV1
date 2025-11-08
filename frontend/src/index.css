@@ -4,28 +4,32 @@
 
 @layer base {
     :root {
-        /* Construction Company Theme - Red & Gold */
+        /* Modern Construction Theme - Navy, Slate & Gold */
         --background: 0 0% 100%;
-        --foreground: 210 17% 20%;
+        --foreground: 215 25% 27%;
         
-        --primary: 4 75% 50%;
+        /* Primary: Deep Navy Blue */
+        --primary: 215 45% 25%;
         --primary-foreground: 0 0% 100%;
         
-        --secondary: 45 100% 47%;
-        --secondary-foreground: 0 0% 20%;
+        /* Secondary: Slate Blue */
+        --secondary: 215 20% 65%;
+        --secondary-foreground: 215 25% 20%;
         
-        --muted: 210 12% 95%;
-        --muted-foreground: 215 10% 40%;
+        /* Accent: Warm Gold */
+        --accent: 43 96% 56%;
+        --accent-foreground: 215 25% 20%;
         
-        --accent: 45 100% 47%;
-        --accent-foreground: 0 0% 20%;
+        /* Muted backgrounds */
+        --muted: 215 15% 95%;
+        --muted-foreground: 215 15% 45%;
         
         --card: 0 0% 100%;
-        --card-foreground: 210 17% 20%;
+        --card-foreground: 215 25% 27%;
         
-        --border: 214 12% 90%;
-        --input: 214 12% 90%;
-        --ring: 4 75% 50%;
+        --border: 215 15% 88%;
+        --input: 215 15% 88%;
+        --ring: 215 45% 25%;
         
         --radius: 0.75rem;
     }
@@ -77,6 +81,11 @@
     100% { opacity: 0; top: 30px; }
 }
 
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
 .animate-fade-in-up {
     animation: fadeInUp 1s ease-out;
 }
@@ -87,6 +96,21 @@
 
 .animate-fade-in-delay-2 {
     animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Smooth transitions */
