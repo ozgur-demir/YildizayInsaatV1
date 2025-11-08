@@ -24,13 +24,13 @@ const Header = ({ isScrolled }) => {
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo - BIGGER */}
+          {/* Logo - MUCH BIGGER */}
           <div className="flex items-center">
             <img 
               src="https://customer-assets.emergentagent.com/job_6474a059-a22b-4c37-b1ef-e3bebee970f4/artifacts/ihq1edzo_logo.png" 
               alt="YILDIZAY Logo" 
               className={`object-contain hover:scale-105 transition-all duration-300 cursor-pointer ${
-                isScrolled ? 'h-20 w-20 md:h-24 md:w-24' : 'h-24 w-24 md:h-28 md:w-28'
+                isScrolled ? 'h-24 w-24 md:h-28 md:w-28' : 'h-28 w-28 md:h-36 md:w-36 lg:h-40 lg:w-40'
               }`}
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             />
