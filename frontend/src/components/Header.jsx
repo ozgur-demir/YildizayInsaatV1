@@ -19,12 +19,12 @@ const Header = ({ isScrolled }) => {
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-lg shadow-xl py-3 border-b border-slate-100' 
-        : 'bg-gradient-to-b from-black/30 to-transparent py-5'
+        ? 'bg-white/98 backdrop-blur-lg shadow-lg py-3' 
+        : 'bg-gradient-to-b from-[hsl(0,0%,15%)]/40 to-transparent py-5'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo - Left Side */}
+          {/* Logo */}
           <div className="flex items-center">
             <img 
               src="https://customer-assets.emergentagent.com/job_6474a059-a22b-4c37-b1ef-e3bebee970f4/artifacts/ihq1edzo_logo.png" 
@@ -36,14 +36,14 @@ const Header = ({ isScrolled }) => {
             />
           </div>
 
-          {/* Desktop Navigation - Right Side */}
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
             <button 
               onClick={() => scrollToSection('about')} 
               className={`px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
                 isScrolled 
-                  ? 'text-slate-700 hover:text-[hsl(215,45%,25%)] hover:bg-slate-50' 
-                  : 'text-white hover:bg-white/10'
+                  ? 'text-[hsl(30,8%,25%)] hover:text-[hsl(355,65%,45%)] hover:bg-[hsl(30,20%,96%)]' 
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
               }`}
             >
               Hakkımızda
@@ -52,8 +52,8 @@ const Header = ({ isScrolled }) => {
               onClick={() => scrollToSection('services')} 
               className={`px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
                 isScrolled 
-                  ? 'text-slate-700 hover:text-[hsl(215,45%,25%)] hover:bg-slate-50' 
-                  : 'text-white hover:bg-white/10'
+                  ? 'text-[hsl(30,8%,25%)] hover:text-[hsl(355,65%,45%)] hover:bg-[hsl(30,20%,96%)]' 
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
               }`}
             >
               Hizmetler
@@ -62,8 +62,8 @@ const Header = ({ isScrolled }) => {
               onClick={() => scrollToSection('projects')} 
               className={`px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
                 isScrolled 
-                  ? 'text-slate-700 hover:text-[hsl(215,45%,25%)] hover:bg-slate-50' 
-                  : 'text-white hover:bg-white/10'
+                  ? 'text-[hsl(30,8%,25%)] hover:text-[hsl(355,65%,45%)] hover:bg-[hsl(30,20%,96%)]' 
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
               }`}
             >
               Projeler
@@ -72,15 +72,15 @@ const Header = ({ isScrolled }) => {
               onClick={() => scrollToSection('news')} 
               className={`px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
                 isScrolled 
-                  ? 'text-slate-700 hover:text-[hsl(215,45%,25%)] hover:bg-slate-50' 
-                  : 'text-white hover:bg-white/10'
+                  ? 'text-[hsl(30,8%,25%)] hover:text-[hsl(355,65%,45%)] hover:bg-[hsl(30,20%,96%)]' 
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
               }`}
             >
               Haberler
             </button>
             <button 
               onClick={() => scrollToSection('contact')} 
-              className="ml-2 px-6 py-2.5 bg-[hsl(43,96%,56%)] hover:bg-[hsl(43,96%,50%)] text-[hsl(215,45%,25%)] text-sm font-bold rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+              className="ml-2 px-6 py-2.5 bg-gradient-to-r from-[hsl(355,65%,45%)] to-[hsl(355,65%,38%)] hover:from-[hsl(355,65%,50%)] hover:to-[hsl(355,65%,43%)] text-white text-sm font-bold rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
               İletişim
             </button>
@@ -93,17 +93,17 @@ const Header = ({ isScrolled }) => {
             aria-label="Toggle menu"
           >
             <span className={`block w-7 h-0.5 transition-all duration-300 ${
-              isScrolled ? 'bg-slate-700' : 'bg-white'
+              isScrolled ? 'bg-[hsl(30,8%,25%)]' : 'bg-white'
             } ${
               mobileMenuOpen ? 'rotate-45 translate-y-2' : ''
             }`}></span>
             <span className={`block w-7 h-0.5 transition-all duration-300 ${
-              isScrolled ? 'bg-slate-700' : 'bg-white'
+              isScrolled ? 'bg-[hsl(30,8%,25%)]' : 'bg-white'
             } ${
               mobileMenuOpen ? 'opacity-0' : ''
             }`}></span>
             <span className={`block w-7 h-0.5 transition-all duration-300 ${
-              isScrolled ? 'bg-slate-700' : 'bg-white'
+              isScrolled ? 'bg-[hsl(30,8%,25%)]' : 'bg-white'
             } ${
               mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''
             }`}></span>
@@ -112,37 +112,37 @@ const Header = ({ isScrolled }) => {
       </div>
 
       {/* Mobile Navigation */}
-      <div className={`lg:hidden fixed inset-0 bg-gradient-to-br from-[hsl(215,45%,25%)] to-[hsl(215,40%,20%)] transition-all duration-500 ${
+      <div className={`lg:hidden fixed inset-0 bg-gradient-to-br from-[hsl(0,0%,15%)] to-[hsl(30,8%,20%)] transition-all duration-500 ${
         mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
       }`} style={{ top: 0 }}>
         <div className="flex flex-col items-center justify-center h-full space-y-8 p-8">
           <button 
             onClick={() => scrollToSection('about')} 
-            className="text-2xl text-white font-bold hover:text-[hsl(43,96%,56%)] transition-colors"
+            className="text-2xl text-white font-bold hover:text-[hsl(45,100%,55%)] transition-colors"
           >
             Hakkımızda
           </button>
           <button 
             onClick={() => scrollToSection('services')} 
-            className="text-2xl text-white font-bold hover:text-[hsl(43,96%,56%)] transition-colors"
+            className="text-2xl text-white font-bold hover:text-[hsl(45,100%,55%)] transition-colors"
           >
             Hizmetler
           </button>
           <button 
             onClick={() => scrollToSection('projects')} 
-            className="text-2xl text-white font-bold hover:text-[hsl(43,96%,56%)] transition-colors"
+            className="text-2xl text-white font-bold hover:text-[hsl(45,100%,55%)] transition-colors"
           >
             Projeler
           </button>
           <button 
             onClick={() => scrollToSection('news')} 
-            className="text-2xl text-white font-bold hover:text-[hsl(43,96%,56%)] transition-colors"
+            className="text-2xl text-white font-bold hover:text-[hsl(45,100%,55%)] transition-colors"
           >
             Haberler
           </button>
           <button 
             onClick={() => scrollToSection('contact')} 
-            className="px-10 py-4 bg-[hsl(43,96%,56%)] text-[hsl(215,45%,25%)] text-xl font-bold rounded-lg shadow-xl hover:scale-105 transition-all"
+            className="px-10 py-4 bg-gradient-to-r from-[hsl(355,65%,45%)] to-[hsl(355,65%,38%)] text-white text-xl font-bold rounded-lg shadow-xl hover:scale-105 transition-all"
           >
             İletişim
           </button>

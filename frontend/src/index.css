@@ -4,34 +4,43 @@
 
 @layer base {
     :root {
-        /* Modern Construction Theme - Navy, Slate & Gold */
+        /* YILDIZAY Brand Colors - Softer & Modern */
         --background: 0 0% 100%;
-        --foreground: 215 25% 27%;
+        --foreground: 0 0% 15%;
         
-        /* Primary: Deep Navy Blue */
-        --primary: 215 45% 25%;
+        /* Primary: Sophisticated Burgundy Red (from logo) */
+        --primary: 355 65% 45%;
         --primary-foreground: 0 0% 100%;
+        --primary-light: 355 65% 55%;
+        --primary-dark: 355 65% 35%;
         
-        /* Secondary: Slate Blue */
-        --secondary: 215 20% 65%;
-        --secondary-foreground: 215 25% 20%;
+        /* Secondary: Warm Terracotta */
+        --secondary: 15 75% 60%;
+        --secondary-foreground: 0 0% 100%;
         
-        /* Accent: Warm Gold */
-        --accent: 43 96% 56%;
-        --accent-foreground: 215 25% 20%;
+        /* Accent: Golden Amber (from logo stars) */
+        --accent: 40 95% 60%;
+        --accent-foreground: 0 0% 15%;
+        --accent-dark: 40 85% 50%;
         
-        /* Muted backgrounds */
-        --muted: 215 15% 95%;
-        --muted-foreground: 215 15% 45%;
+        /* Neutral: Warm tones */
+        --muted: 30 20% 96%;
+        --muted-foreground: 30 10% 40%;
         
         --card: 0 0% 100%;
-        --card-foreground: 215 25% 27%;
+        --card-foreground: 0 0% 15%;
         
-        --border: 215 15% 88%;
-        --input: 215 15% 88%;
-        --ring: 215 45% 25%;
+        --border: 30 15% 90%;
+        --input: 30 15% 90%;
+        --ring: 355 65% 45%;
         
         --radius: 0.75rem;
+        
+        /* Custom brand colors */
+        --brand-red: 355 85% 55%;
+        --brand-gold: 45 100% 55%;
+        --cream: 40 30% 97%;
+        --warm-gray: 30 8% 25%;
     }
 }
 
@@ -64,26 +73,14 @@
     }
 }
 
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes scrollDot {
-    0% { opacity: 0; top: 10px; }
-    50% { opacity: 1; }
-    100% { opacity: 0; top: 30px; }
-}
-
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
 }
 
 .animate-fade-in-up {
@@ -118,7 +115,7 @@
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Remove default React transitions that might interfere */
+/* Remove default React transitions */
 @layer base {
     [data-debug-wrapper="true"] {
         display: contents !important;
