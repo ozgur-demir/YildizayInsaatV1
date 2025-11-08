@@ -115,7 +115,7 @@ const Header = ({ isScrolled }) => {
       {/* Mobile Navigation */}
       <div className={`lg:hidden fixed inset-0 bg-gradient-to-br from-[hsl(0,0%,15%)] to-[hsl(30,8%,20%)] transition-all duration-500 z-[60] ${
         mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
-      }`} style={{ top: 0 }}>
+      }`}>
         <div className="flex flex-col items-center justify-center h-full space-y-8 p-8">
           <button 
             onClick={() => scrollToSection('about')} 
