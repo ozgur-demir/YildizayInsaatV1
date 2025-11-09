@@ -221,11 +221,8 @@ class APITester:
             return
         
         featured_estate = data["data"]
-        if "item" not in featured_estate:
-            self.log_result("Featured Estate Structure", False, "Featured estate missing 'item' field")
-            return
-        
-        estate_item = featured_estate["item"]
+        # The featured estate endpoint now returns data directly, not wrapped in "item"
+        estate_item = featured_estate
         
         # Check required fields for hero section
         required_fields = ["Name", "ShortDesc"]
