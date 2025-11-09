@@ -281,7 +281,10 @@ const Hero = () => {
                       src={`https://yildizaycp.ozdsystems.com/uploads/${projectDetail.medias[currentImageIndex].file}`}
                       alt={`${projectDetail.name} - ${currentImageIndex + 1}`}
                       className="w-full h-full object-cover cursor-pointer"
-                      onClick={() => setLightboxOpen(true)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setLightboxOpen(true);
+                      }}
                     />
                     
                     {projectDetail.medias.length > 1 && (
