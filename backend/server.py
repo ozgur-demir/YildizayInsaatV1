@@ -89,6 +89,14 @@ try:
 except Exception as e:
     logger.error(f"Failed to register content router: {str(e)}", exc_info=True)
 
+# Import and include contact routes
+try:
+    from routes import contact
+    app.include_router(contact.router, prefix="/api/contact")
+    logger.info("Contact router registered successfully")
+except Exception as e:
+    logger.error(f"Failed to register contact router: {str(e)}", exc_info=True)
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
