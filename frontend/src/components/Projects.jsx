@@ -5,6 +5,9 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [projectDetail, setProjectDetail] = useState(null);
+  const [modalLoading, setModalLoading] = useState(false);
   const sectionRef = useRef(null);
 
   // Fetch projects from API
