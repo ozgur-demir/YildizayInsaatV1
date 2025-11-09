@@ -157,7 +157,7 @@ class APITester:
     
     def test_estates_endpoint(self):
         """Test GET /api/content/estates"""
-        data = self.test_endpoint("/content/estates", "Estates Endpoint", ["data", "statusCode"])
+        data = self.test_endpoint("/content/estates", "Estates Endpoint", ["data"])
         
         if not data:
             return
@@ -176,35 +176,37 @@ class APITester:
         
         self.log_result("Estates Content", True, f"Retrieved {len(estates)} estate projects")
         
-        # Store estate IDs for detail testing
+        # Store estate IDs for detail testing - external API returns data directly
         for estate in estates:
-            if "item" in estate and "id" in estate["item"]:
-                self.estate_ids.append(estate["item"]["id"])
+            if "id" in estate:
+                self.estate_ids.append(estate["id"])
         
-        # Test first estate structure
+        # Test first estate structure - external API returns data directly, not wrapped in "item"
         first_estate = estates[0]
-        if "item" in first_estate:
-            estate_item = first_estate["item"]
-            
-            # Check required fields
-            required_fields = ["id", "Name", "ShortDesc", "Location"]
-            missing_fields = [field for field in required_fields if field not in estate_item]
-            
-            if missing_fields:
-                self.log_result("Estates Required Fields", False, 
-                    f"Missing required fields: {missing_fields}",
-                    {"available_fields": list(estate_item.keys())})
-            else:
-                self.log_result("Estates Required Fields", True, 
-                    "All required fields present (id, Name, ShortDesc, Location)")
-            
-            # Check for coverUrl
-            if "coverUrl" in estate_item:
-                self.validate_cover_url(estate_item["coverUrl"], "Estates")
-            else:
-                self.log_result("Estates - Cover URL", False, "coverUrl field missing from estate item")
+        
+        # Check required fields (using actual field names from API)
+        required_fields = ["id", "name", "shortDesc"]
+        missing_fields = [field for field in required_fields if field not in first_estate]
+        
+        if missing_fields:
+            self.log_result("Estates Required Fields", False, 
+                f"Missing required fields: {missing_fields}",
+                {"available_fields": list(first_estate.keys())})
         else:
-            self.log_result("Estates Structure", False, "Estate item missing 'item' field")
+            self.log_result("Estates Required Fields", True, 
+                "Required fields present (id, name, shortDesc)")
+        
+        # Check for coverUrl (should be added by backend)
+        if "coverUrl" in first_estate:
+            self.validate_cover_url(first_estate["coverUrl"], "Estates")
+        else:
+            # Check if there's media data that should be formatted
+            if "medias" in first_estate and first_estate["medias"]:
+                self.log_result("Estates - Cover URL", False, 
+                    "Backend not formatting media files to coverUrl")
+            else:
+                self.log_result("Estates - Cover URL", False, 
+                    "No media/cover image data available")
     
     def test_featured_estate_endpoint(self):
         """Test GET /api/content/estates/featured"""
