@@ -243,7 +243,7 @@ class APITester:
             self.log_result("Featured Estate - Cover URL", False, "coverUrl field missing from featured estate")
         
         self.log_result("Featured Estate Content", True, 
-            f"Featured estate retrieved: {estate_item.get('Name', 'Unknown')}")
+            f"Featured estate retrieved: {estate_item.get('name', 'Unknown')}")
     
     def test_estate_detail_endpoint(self):
         """Test GET /api/content/estates/{estate_id}"""
