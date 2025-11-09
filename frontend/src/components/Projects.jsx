@@ -89,6 +89,7 @@ const Projects = () => {
     
     setSelectedProject(project);
     setModalLoading(true);
+    setCurrentImageIndex(0);
     
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
@@ -112,6 +113,25 @@ const Projects = () => {
   const closeModal = () => {
     setSelectedProject(null);
     setProjectDetail(null);
+    setCurrentImageIndex(0);
+    setLightboxOpen(false);
+  };
+
+  // Navigate slider
+  const nextImage = () => {
+    if (projectDetail?.item?.medias) {
+      setCurrentImageIndex((prev) => 
+        prev === projectDetail.item.medias.length - 1 ? 0 : prev + 1
+      );
+    }
+  };
+
+  const prevImage = () => {
+    if (projectDetail?.item?.medias) {
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? projectDetail.item.medias.length - 1 : prev - 1
+      );
+    }
   };
 
   // Close modal on ESC key
