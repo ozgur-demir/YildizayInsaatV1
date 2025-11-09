@@ -32,7 +32,7 @@ async def health_check():
 
 # Import content routes
 import routes.content as content_routes
-app.include_router(content_routes.router)
+app.include_router(content_routes.router, prefix="/api/content")
 
 logger.info("Application started - routes registered")
 
