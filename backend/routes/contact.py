@@ -13,9 +13,9 @@ router = APIRouter(tags=["contact"])
 # SMTP Configuration - Yildizay Mail Server
 SMTP_HOST = "mail.yildizay.com.tr"
 SMTP_PORT = 587
-SMTP_USER = "noreply@yildizay.com.tr"
+SMTP_USER = "no-reply@yildizay.com.tr"  # Fixed: with hyphen
 SMTP_PASSWORD = "O1es9Lz@_lB3@V@6"
-SMTP_FROM = "noreply@yildizay.com.tr"
+SMTP_FROM = "no-reply@yildizay.com.tr"  # Fixed: with hyphen
 SMTP_FROM_NAME = "Yildizay WebApp"
 RECIPIENTS = ["sahin@yildizay.com.tr", "info@csyolu.com"]
 SMTP_SSL_ENABLE = False  # EnableSsl: false
