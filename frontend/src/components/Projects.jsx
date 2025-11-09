@@ -486,7 +486,7 @@ const Projects = () => {
         )}
 
         {/* Lightbox for Image Viewing */}
-        {lightboxOpen && projectDetail?.item?.medias && (
+        {lightboxOpen && projectDetail?.medias && (
           <div 
             className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-4"
             onClick={() => setLightboxOpen(false)}
@@ -502,12 +502,12 @@ const Projects = () => {
 
             <div className="relative max-w-7xl w-full" onClick={(e) => e.stopPropagation()}>
               <img 
-                src={`https://yildizaycp.ozdsystems.com/uploads/${projectDetail.item.medias[currentImageIndex].file}`}
-                alt={`${projectDetail.item.name} - ${currentImageIndex + 1}`}
+                src={`https://yildizaycp.ozdsystems.com/uploads/${projectDetail.medias[currentImageIndex].file}`}
+                alt={`${projectDetail.name} - ${currentImageIndex + 1}`}
                 className="w-full h-auto max-h-[90vh] object-contain"
               />
               
-              {projectDetail.item.medias.length > 1 && (
+              {projectDetail.medias.length > 1 && (
                 <>
                   <button
                     onClick={prevImage}
