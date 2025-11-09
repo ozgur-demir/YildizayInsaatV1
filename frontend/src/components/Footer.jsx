@@ -185,7 +185,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-500 hover:text-gray-400 transition-colors text-xs"
           >
-            Tasarım: OZDSystems & Digital
+            OZDSystems & Digital
           </a>
         </div>
       </div>
