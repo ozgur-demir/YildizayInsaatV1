@@ -2,13 +2,21 @@ import os
 import aiosmtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, EmailStr
 import logging
+from datetime import datetime, timedelta
+from collections import defaultdict
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(tags=["contact"])
+
+# Rate limiting - In-memory storage
+# Format: {ip_address: [timestamp1, timestamp2, ...]}
+rate_limit_store = defaultdict(list)
+RATE_LIMIT_WINDOW = 300  # 5 minutes in seconds
+RATE_LIMIT_MAX_REQUESTS = 3  # Max 3 requests per 5 minutes per IP
 
 # SMTP Configuration - Yildizay Mail Server
 SMTP_HOST = "mail.yildizay.com.tr"
