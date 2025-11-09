@@ -26,11 +26,11 @@ const Projects = () => {
         
         // Transform API data to component format
         const formattedProjects = projectData.map(project => ({
-          id: project.item?.id,
-          title: project.item?.name || 'Proje',
-          category: project.estate?.location || 'Konut',
-          image: project.item?.coverUrl || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070',
-          url: project.item?.url
+          id: project.id,
+          title: project.name || 'Proje',
+          category: project.location || 'Konut',
+          image: project.coverUrl || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070',
+          url: project.url
         }));
         
         setProjects(formattedProjects);
