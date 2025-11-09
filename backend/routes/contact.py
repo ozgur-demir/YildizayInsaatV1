@@ -10,13 +10,14 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(tags=["contact"])
 
-# SMTP Configuration
+# SMTP Configuration - GoDaddy Settings
 SMTP_HOST = "smtpout.secureserver.net"
 SMTP_PORT = 587
 SMTP_USER = "info@ozdsystems.com"
 SMTP_PASSWORD = "Konsopia123@"
 SMTP_FROM = "info@ozdsystems.com"
 RECIPIENTS = ["sahin@yildizay.com.tr", "info@csyolu.com"]
+SMTP_SSL_ENABLE = False  # emailSSLEnable: false
 
 class ContactForm(BaseModel):
     name: str
