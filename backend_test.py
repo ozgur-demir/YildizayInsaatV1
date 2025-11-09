@@ -109,7 +109,7 @@ class APITester:
     
     def test_blogs_endpoint(self):
         """Test GET /api/content/blogs"""
-        data = self.test_endpoint("/content/blogs", "Blogs Endpoint", ["data", "statusCode"])
+        data = self.test_endpoint("/content/blogs", "Blogs Endpoint", ["data"])
         
         if not data:
             return
@@ -128,18 +128,32 @@ class APITester:
         
         self.log_result("Blogs Content", True, f"Retrieved {len(blogs)} blog articles")
         
-        # Test first blog structure
+        # Test first blog structure - the external API returns data directly, not wrapped in "item"
         first_blog = blogs[0]
-        if "item" in first_blog:
-            blog_item = first_blog["item"]
-            
-            # Check for coverUrl
-            if "coverUrl" in blog_item:
-                self.validate_cover_url(blog_item["coverUrl"], "Blogs")
-            else:
-                self.log_result("Blogs - Cover URL", False, "coverUrl field missing from blog item")
+        
+        # Check required fields for blog display
+        required_fields = ["name", "shortDesc"]
+        missing_fields = [field for field in required_fields if field not in first_blog]
+        
+        if missing_fields:
+            self.log_result("Blogs Required Fields", False, 
+                f"Missing required fields: {missing_fields}",
+                {"available_fields": list(first_blog.keys())})
         else:
-            self.log_result("Blogs Structure", False, "Blog item missing 'item' field")
+            self.log_result("Blogs Required Fields", True, 
+                "Required fields present (name, shortDesc)")
+        
+        # Check for coverUrl (should be added by backend)
+        if "coverUrl" in first_blog:
+            self.validate_cover_url(first_blog["coverUrl"], "Blogs")
+        else:
+            # Check if there's a cover field that should be formatted
+            if "cover" in first_blog:
+                self.log_result("Blogs - Cover URL", False, 
+                    "Backend not formatting cover field to coverUrl")
+            else:
+                self.log_result("Blogs - Cover URL", False, 
+                    "No cover image data available")
     
     def test_estates_endpoint(self):
         """Test GET /api/content/estates"""
