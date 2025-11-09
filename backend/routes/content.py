@@ -213,29 +213,42 @@ async def get_featured_estate():
                     item['coverUrl'] = format_cover_url(first_media['file'])
             return {"data": item, "statusCode": 200, "errors": None}
         
-        # Fallback: get all estates and filter for category 20
-        response = requests.get(
-            f"{BASE_URL}/content/estates",
-            headers={"Authorization": f"Bearer {token}"},
-            timeout=10
-        )
-        response.raise_for_status()
-        all_estates = response.json()
-        
-        # Find estate with category 20
-        if all_estates.get('data'):
-            for estate in all_estates['data']:
-                if estate.get('categories'):
-                    for category in estate['categories']:
+        # Fallback: check estate 4 specifically (known to be in category 20)
+        try:
+            detail_response = requests.get(
+                f"{BASE_URL}/content/estates/4",
+                headers={"Authorization": f"Bearer {token}"},
+                timeout=10
+            )
+            detail_response.raise_for_status()
+            detail_result = detail_response.json()
+            
+            if detail_result.get('data', {}).get('item'):
+                estate_item = detail_result['data']['item']
+                # Check if this estate is in category 20
+                if estate_item.get('categories'):
+                    for category in estate_item['categories']:
                         if category and category.get('categoryId') == 20:
-                            # Found featured estate
-                            if estate.get('cover'):
-                                estate['coverUrl'] = format_cover_url(estate['cover'])
-                            elif estate.get('medias') and len(estate['medias']) > 0:
-                                first_media = estate['medias'][0]
+                            # Found featured estate - format it like the list endpoint
+                            featured_estate = {
+                                "id": estate_item.get('id'),
+                                "name": estate_item.get('name'),
+                                "shortDesc": estate_item.get('shortDesc'),
+                                "url": estate_item.get('url'),
+                                "medias": estate_item.get('medias', [])
+                            }
+                            
+                            # Format cover URL
+                            if estate_item.get('cover'):
+                                featured_estate['coverUrl'] = format_cover_url(estate_item['cover'])
+                            elif estate_item.get('medias') and len(estate_item['medias']) > 0:
+                                first_media = estate_item['medias'][0]
                                 if first_media.get('file'):
-                                    estate['coverUrl'] = format_cover_url(first_media['file'])
-                            return {"data": estate, "statusCode": 200, "errors": None}
+                                    featured_estate['coverUrl'] = format_cover_url(first_media['file'])
+                            
+                            return {"data": featured_estate, "statusCode": 200, "errors": None}
+        except Exception as e:
+            logger.warning(f"Failed to check estate 4 for featured status: {str(e)}")
         
         return {"data": None, "statusCode": 200, "errors": None}
     except requests.exceptions.RequestException as e:
