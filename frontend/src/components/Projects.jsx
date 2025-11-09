@@ -252,12 +252,21 @@ const Projects = () => {
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
                   />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* Always visible gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent"></div>
+                  
+                  {/* Project info - always visible, enhanced on hover */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                    <p className="text-[hsl(45,100%,55%)] font-medium">{project.category}</p>
+                    <h3 className="text-xl font-bold mb-2 transition-all duration-300 group-hover:text-[hsl(45,100%,55%)]">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-300 font-medium transition-colors duration-300 group-hover:text-white">
+                      {project.category}
+                    </p>
                   </div>
+                  
+                  {/* Hover glow effect */}
+                  <div className="absolute inset-0 ring-2 ring-transparent group-hover:ring-[hsl(45,100%,55%)] transition-all duration-300"></div>
                 </div>
               </div>
             ))}
