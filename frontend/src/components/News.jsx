@@ -32,7 +32,7 @@ const News = () => {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
-          }) : 'Yakında',
+          }) : null,
           image: article.coverUrl || 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076',
           url: article.url
         }));
