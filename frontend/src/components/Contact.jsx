@@ -9,6 +9,8 @@ const Contact = () => {
     message: ''
   });
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState({ type: '', text: '' });
   const sectionRef = useRef(null);
 
   useEffect(() => {
