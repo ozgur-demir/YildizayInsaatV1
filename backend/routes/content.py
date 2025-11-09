@@ -292,31 +292,43 @@ async def get_estate_detail(estate_id: int):
 
 @router.get("/blogs/{blog_id}")
 async def get_blog_detail(blog_id: int):
-    """Get single blog detail"""
+    """Get single blog detail using items endpoint"""
     try:
         token = get_auth_token()
+        # Use /items/{id} endpoint as per API documentation
         response = requests.get(
-            f"{BASE_URL}/content/blogs/{blog_id}",
+            f"{BASE_URL}/content/items/{blog_id}",
             headers={"Authorization": f"Bearer {token}"},
             timeout=10
         )
         response.raise_for_status()
         result = response.json()
         
-        # API returns data.item structure (similar to estates)
-        if result.get('data', {}).get('item'):
-            blog_item = result['data']['item']
+        # API returns ItemSaveDto structure: { Item, ItemDetail, Categories }
+        if result.get('data'):
+            item_data = result['data']
+            blog_item = item_data.get('item', {})
             
-            # Check for direct cover field
+            # Add details from ItemDetail
+            if item_data.get('itemDetail'):
+                item_detail = item_data['itemDetail']
+                if not blog_item.get('details'):
+                    blog_item['details'] = []
+                # Convert ItemDetail to details array format
+                blog_item['details'].append({
+                    'content': item_detail.get('content', ''),
+                    'lang': item_detail.get('lang', 0)
+                })
+            
+            # Format cover URL
             if blog_item.get('cover'):
                 blog_item['coverUrl'] = format_cover_url(blog_item['cover'])
-            # Also check medias array for cover image
             elif blog_item.get('medias') and len(blog_item['medias']) > 0:
                 first_media = blog_item['medias'][0]
                 if first_media.get('file'):
                     blog_item['coverUrl'] = format_cover_url(first_media['file'])
             
-            # Return flattened structure (item fields at root level)
+            # Return flattened structure
             return {"data": blog_item, "errors": result.get('errors')}
         
         return result
