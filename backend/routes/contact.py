@@ -35,9 +35,39 @@ class ContactForm(BaseModel):
     phone: str = None
     message: str
 
+def check_rate_limit(ip_address: str) -> bool:
+    """Check if IP has exceeded rate limit"""
+    now = datetime.now()
+    
+    # Clean old requests (older than RATE_LIMIT_WINDOW)
+    rate_limit_store[ip_address] = [
+        timestamp for timestamp in rate_limit_store[ip_address]
+        if (now - timestamp).total_seconds() < RATE_LIMIT_WINDOW
+    ]
+    
+    # Check if exceeded limit
+    if len(rate_limit_store[ip_address]) >= RATE_LIMIT_MAX_REQUESTS:
+        return False
+    
+    # Add current request
+    rate_limit_store[ip_address].append(now)
+    return True
+
 @router.post("/send")
-async def send_contact_email(form: ContactForm):
-    """Send contact form email"""
+async def send_contact_email(form: ContactForm, request: Request):
+    """Send contact form email with rate limiting"""
+    # Get client IP
+    client_ip = request.client.host
+    
+    # Check rate limit
+    if not check_rate_limit(client_ip):
+        remaining_time = RATE_LIMIT_WINDOW // 60  # Convert to minutes
+        logger.warning(f"Rate limit exceeded for IP: {client_ip}")
+        raise HTTPException(
+            status_code=429,
+            detail=f"Çok fazla istek gönderildi. Lütfen {remaining_time} dakika sonra tekrar deneyin."
+        )
+    
     try:
         # Create email message
         message = MIMEMultipart('alternative')
