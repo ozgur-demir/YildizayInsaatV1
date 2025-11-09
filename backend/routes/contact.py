@@ -83,27 +83,43 @@ Bu mesaj yildizay.com.tr iletişim formundan gönderilmiştir.
         
         # Send email with GoDaddy SMTP settings
         # emailSSLEnable: false - Don't use direct SSL/TLS, use STARTTLS
-        smtp = aiosmtplib.SMTP(
-            hostname=SMTP_HOST,
-            port=SMTP_PORT,
-            use_tls=False,  # No direct TLS connection
-            start_tls=True,  # Use STARTTLS after connection
-            timeout=60
-        )
-        
-        await smtp.connect()
-        await smtp.login(SMTP_USER, SMTP_PASSWORD)
-        await smtp.send_message(message)
-        await smtp.quit()
-        
-        logger.info(f"Contact form email sent successfully from {form.email}")
-        return {
-            "success": True,
-            "message": "Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız."
-        }
+        try:
+            smtp = aiosmtplib.SMTP(
+                hostname=SMTP_HOST,
+                port=SMTP_PORT,
+                use_tls=False,  # No direct TLS connection
+                timeout=60
+            )
+            
+            logger.info("Connecting to SMTP server...")
+            await smtp.connect()
+            
+            logger.info("Starting TLS...")
+            await smtp.starttls()
+            
+            logger.info("Logging in...")
+            await smtp.login(SMTP_USER, SMTP_PASSWORD)
+            
+            logger.info("Sending message...")
+            await smtp.send_message(message)
+            
+            logger.info("Closing connection...")
+            await smtp.quit()
+            
+            logger.info(f"Contact form email sent successfully from {form.email}")
+            return {
+                "success": True,
+                "message": "Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız."
+            }
+        except aiosmtplib.SMTPException as smtp_error:
+            logger.error(f"SMTP Error: {type(smtp_error).__name__} - {str(smtp_error)}")
+            raise HTTPException(
+                status_code=500,
+                detail=f"SMTP hatası: {str(smtp_error)}"
+            )
         
     except Exception as e:
-        logger.error(f"Failed to send contact email: {str(e)}")
+        logger.error(f"Failed to send contact email: {type(e).__name__} - {str(e)}")
         raise HTTPException(
             status_code=500,
             detail="E-posta gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin."
