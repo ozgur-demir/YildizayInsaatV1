@@ -69,6 +69,11 @@ async def get_status_checks():
 # Include the router in the main app
 app.include_router(api_router)
 
+# Test content endpoint
+@app.get("/api/content/test")
+async def test_content():
+    return {"message": "Content API working", "status": "ok"}
+
 # Import and include content routes
 try:
     from routes import content
