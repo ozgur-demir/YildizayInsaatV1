@@ -180,14 +180,48 @@ const Projects = () => {
     <section id="projects" className="py-20 bg-white" ref={sectionRef}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
-            Tamamlanan Projeler
+            Projeler
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-[hsl(355,65%,45%)] to-[hsl(45,100%,55%)] mx-auto mb-4"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Başarıyla tamamladığımız projelerden örnekler
+          <div className="w-20 h-1 bg-gradient-to-r from-[hsl(355,65%,45%)] to-[hsl(45,100%,55%)] mx-auto mb-6"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto mb-8">
+            Başarıyla tamamladığımız ve devam eden projelerimiz
           </p>
+          
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-3">
+            <button
+              onClick={() => setActiveFilter('all')}
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                activeFilter === 'all'
+                  ? 'bg-gradient-to-r from-[hsl(355,65%,50%)] to-[hsl(355,65%,42%)] text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Hepsi
+            </button>
+            <button
+              onClick={() => setActiveFilter('completed')}
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                activeFilter === 'completed'
+                  ? 'bg-gradient-to-r from-[hsl(355,65%,50%)] to-[hsl(355,65%,42%)] text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Tamamlanan Projeler
+            </button>
+            <button
+              onClick={() => setActiveFilter('ongoing')}
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                activeFilter === 'ongoing'
+                  ? 'bg-gradient-to-r from-[hsl(355,65%,50%)] to-[hsl(355,65%,42%)] text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              Devam Eden Projeler
+            </button>
+          </div>
         </div>
 
         {/* Loading State */}
