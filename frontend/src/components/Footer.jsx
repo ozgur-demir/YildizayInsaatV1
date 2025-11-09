@@ -20,7 +20,7 @@ const Footer = () => {
             <img 
               src="https://customer-assets.emergentagent.com/job_6474a059-a22b-4c37-b1ef-e3bebee970f4/artifacts/ihq1edzo_logo.png" 
               alt="YILDIZAY Logo" 
-              className="h-20 w-20 mb-6"
+              className="h-28 w-28 mb-6"
             />
             <p className="text-gray-300 text-sm leading-relaxed mb-6">
               Konut, ticari yapı ve altyapı projelerinde güvenilir çözümler sunuyoruz.
