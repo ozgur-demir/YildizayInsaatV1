@@ -2,7 +2,7 @@ const Footer = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const headerHeight = 180; // Updated for larger header
+      const headerHeight = 180;
       const elementPosition = element.offsetTop - headerHeight;
       window.scrollTo({
         top: elementPosition,
@@ -12,7 +12,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-[hsl(210,17%,20%)] to-[hsl(215,15%,25%)] text-white py-16">
+    <footer className="bg-gradient-to-br from-[hsl(0,0%,15%)] to-[hsl(30,8%,20%)] text-white py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
           {/* Company Info */}
@@ -23,13 +23,12 @@ const Footer = () => {
               className="h-20 w-20 mb-6"
             />
             <p className="text-gray-300 text-sm leading-relaxed mb-6">
-              20 yılı aşkın tecrübemizle konut, ticari yapı ve altyapı projelerinde 
-              güvenilir çözümler sunuyoruz.
+              Konut, ticari yapı ve altyapı projelerinde güvenilir çözümler sunuyoruz.
             </p>
             <div className="flex gap-4">
               <a 
                 href="#" 
-                className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-[hsl(4,75%,50%)] hover:to-[hsl(45,100%,47%)] rounded-full flex items-center justify-center transition-all hover:-translate-y-1"
+                className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-[hsl(355,65%,50%)] hover:to-[hsl(45,100%,55%)] rounded-full flex items-center justify-center transition-all hover:-translate-y-1"
                 onClick={(e) => e.preventDefault()}
                 aria-label="Facebook"
               >
@@ -39,7 +38,7 @@ const Footer = () => {
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-[hsl(4,75%,50%)] hover:to-[hsl(45,100%,47%)] rounded-full flex items-center justify-center transition-all hover:-translate-y-1"
+                className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-[hsl(355,65%,50%)] hover:to-[hsl(45,100%,55%)] rounded-full flex items-center justify-center transition-all hover:-translate-y-1"
                 onClick={(e) => e.preventDefault()}
                 aria-label="Instagram"
               >
@@ -51,7 +50,7 @@ const Footer = () => {
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-[hsl(4,75%,50%)] hover:to-[hsl(45,100%,47%)] rounded-full flex items-center justify-center transition-all hover:-translate-y-1"
+                className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-[hsl(355,65%,50%)] hover:to-[hsl(45,100%,55%)] rounded-full flex items-center justify-center transition-all hover:-translate-y-1"
                 onClick={(e) => e.preventDefault()}
                 aria-label="LinkedIn"
               >
@@ -63,7 +62,7 @@ const Footer = () => {
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-[hsl(4,75%,50%)] hover:to-[hsl(45,100%,47%)] rounded-full flex items-center justify-center transition-all hover:-translate-y-1"
+                className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-[hsl(355,65%,50%)] hover:to-[hsl(45,100%,55%)] rounded-full flex items-center justify-center transition-all hover:-translate-y-1"
                 onClick={(e) => e.preventDefault()}
                 aria-label="Twitter"
               >
@@ -81,7 +80,7 @@ const Footer = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('about')} 
-                  className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block"
+                  className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block"
                 >
                   Hakkımızda
                 </button>
@@ -89,7 +88,7 @@ const Footer = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('services')} 
-                  className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block"
+                  className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block"
                 >
                   Hizmetler
                 </button>
@@ -97,7 +96,7 @@ const Footer = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('projects')} 
-                  className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block"
+                  className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block"
                 >
                   Projeler
                 </button>
@@ -105,7 +104,7 @@ const Footer = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('news')} 
-                  className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block"
+                  className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block"
                 >
                   Haberler
                 </button>
@@ -113,7 +112,7 @@ const Footer = () => {
               <li>
                 <button 
                   onClick={() => scrollToSection('contact')} 
-                  className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block"
+                  className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block"
                 >
                   İletişim
                 </button>
@@ -126,27 +125,27 @@ const Footer = () => {
             <h4 className="font-bold text-lg mb-4">Hizmetler</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block">
+                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block">
                   Konut İnşaatı
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block">
+                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block">
                   Ticari Yapılar
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block">
+                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block">
                   Tadilat & Renovasyon
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block">
+                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block">
                   Altyapı Projeleri
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,47%)] transition-colors hover:translate-x-1 inline-block">
+                <a href="#services" className="text-gray-300 hover:text-[hsl(45,100%,55%)] transition-colors hover:translate-x-1 inline-block">
                   Proje Danışmanlığı
                 </a>
               </li>
@@ -162,12 +161,12 @@ const Footer = () => {
                 İstanbul, Türkiye
               </li>
               <li>
-                <a href="tel:+902125551234" className="hover:text-[hsl(45,100%,47%)] transition-colors">
+                <a href="tel:+902125551234" className="hover:text-[hsl(45,100%,55%)] transition-colors">
                   +90 212 555 12 34
                 </a>
               </li>
               <li>
-                <a href="mailto:info@yildizay.com" className="hover:text-[hsl(45,100%,47%)] transition-colors">
+                <a href="mailto:info@yildizay.com" className="hover:text-[hsl(45,100%,55%)] transition-colors">
                   info@yildizay.com
                 </a>
               </li>
@@ -176,10 +175,18 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 text-center">
-          <p className="text-gray-400 text-sm">
+        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
+          <p className="text-gray-400">
             &copy; 2024 YILDIZAY İnşaat. Tüm hakları saklıdır.
           </p>
+          <a 
+            href="https://ozdsystems.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-500 hover:text-gray-400 transition-colors text-xs"
+          >
+            Tasarım: OZDSystems & Digital
+          </a>
         </div>
       </div>
     </footer>
