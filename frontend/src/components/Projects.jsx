@@ -529,7 +529,7 @@ const Projects = () => {
               )}
               
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm">
-                {currentImageIndex + 1} / {projectDetail.item.medias.length}
+                {currentImageIndex + 1} / {projectDetail.medias.length}
               </div>
             </div>
           </div>
