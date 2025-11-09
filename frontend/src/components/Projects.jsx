@@ -303,18 +303,18 @@ const Projects = () => {
               ) : projectDetail ? (
                 <>
                   {/* Modal Header - Image Slider */}
-                  {projectDetail.item?.medias && projectDetail.item.medias.length > 0 ? (
+                  {projectDetail.medias && projectDetail.medias.length > 0 ? (
                     <div className="relative h-96 overflow-hidden rounded-t-2xl bg-gray-900">
                       {/* Current Image */}
                       <img 
-                        src={`https://yildizaycp.ozdsystems.com/uploads/${projectDetail.item.medias[currentImageIndex].file}`}
-                        alt={`${projectDetail.item.name} - ${currentImageIndex + 1}`}
+                        src={`https://yildizaycp.ozdsystems.com/uploads/${projectDetail.medias[currentImageIndex].file}`}
+                        alt={`${projectDetail.name} - ${currentImageIndex + 1}`}
                         className="w-full h-full object-cover cursor-pointer"
                         onClick={() => setLightboxOpen(true)}
                       />
                       
                       {/* Navigation Arrows */}
-                      {projectDetail.item.medias.length > 1 && (
+                      {projectDetail.medias.length > 1 && (
                         <>
                           <button
                             onClick={prevImage}
