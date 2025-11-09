@@ -211,7 +211,7 @@ const News = () => {
         {/* News Detail Modal */}
         {selectedNews && (
           <div 
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[999] flex items-center justify-center p-4 animate-fade-in"
             onClick={closeModal}
           >
             <div 
