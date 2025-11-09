@@ -89,6 +89,14 @@ try:
 except Exception as e:
     logger.error(f"Failed to register content router: {str(e)}", exc_info=True)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
     client.close()
