@@ -94,6 +94,7 @@ Bu mesaj yildizay.com.tr iletişim formundan gönderilmiştir.
                 hostname=SMTP_HOST,
                 port=SMTP_PORT,
                 use_tls=False,  # EnableSsl: false - no direct TLS
+                validate_certs=False,  # Skip SSL certificate verification
                 timeout=60
             )
             
