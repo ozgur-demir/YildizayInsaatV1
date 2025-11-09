@@ -303,18 +303,21 @@ async def get_blog_detail(blog_id: int):
         response.raise_for_status()
         result = response.json()
         
-        # Format cover URL for blog detail
-        if result.get('data'):
-            blog_item = result['data']
+        # API returns data as an ARRAY with single item (similar to estates)
+        if result.get('data') and isinstance(result['data'], list) and len(result['data']) > 0:
+            blog_item = result['data'][0]  # Get first item from array
+            
             # Check for direct cover field
             if blog_item.get('cover'):
                 blog_item['coverUrl'] = format_cover_url(blog_item['cover'])
             # Also check medias array for cover image
             elif blog_item.get('medias') and len(blog_item['medias']) > 0:
-                # Use first media file as cover
                 first_media = blog_item['medias'][0]
                 if first_media.get('file'):
                     blog_item['coverUrl'] = format_cover_url(first_media['file'])
+            
+            # Return the processed single item (not array)
+            return {"data": blog_item, "errors": result.get('errors')}
         
         return result
     except requests.exceptions.RequestException as e:
