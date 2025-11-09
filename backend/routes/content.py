@@ -189,6 +189,8 @@ async def get_featured_estate():
     """Get featured estate (category 20)"""
     try:
         token = get_auth_token()
+        
+        # First try the category filter
         response = requests.get(
             f"{BASE_URL}/content/estates?categoryId=20",
             headers={"Authorization": f"Bearer {token}"},
@@ -197,7 +199,7 @@ async def get_featured_estate():
         response.raise_for_status()
         result = response.json()
         
-        # Get first item and format cover URL
+        # If category filter returns results, use it
         if result.get('data') and len(result['data']) > 0:
             item = result['data'][0]
             # Check for direct cover field
@@ -210,6 +212,30 @@ async def get_featured_estate():
                 if first_media.get('file'):
                     item['coverUrl'] = format_cover_url(first_media['file'])
             return {"data": item, "statusCode": 200, "errors": None}
+        
+        # Fallback: get all estates and filter for category 20
+        response = requests.get(
+            f"{BASE_URL}/content/estates",
+            headers={"Authorization": f"Bearer {token}"},
+            timeout=10
+        )
+        response.raise_for_status()
+        all_estates = response.json()
+        
+        # Find estate with category 20
+        if all_estates.get('data'):
+            for estate in all_estates['data']:
+                if estate.get('categories'):
+                    for category in estate['categories']:
+                        if category and category.get('categoryId') == 20:
+                            # Found featured estate
+                            if estate.get('cover'):
+                                estate['coverUrl'] = format_cover_url(estate['cover'])
+                            elif estate.get('medias') and len(estate['medias']) > 0:
+                                first_media = estate['medias'][0]
+                                if first_media.get('file'):
+                                    estate['coverUrl'] = format_cover_url(first_media['file'])
+                            return {"data": estate, "statusCode": 200, "errors": None}
         
         return {"data": None, "statusCode": 200, "errors": None}
     except requests.exceptions.RequestException as e:
