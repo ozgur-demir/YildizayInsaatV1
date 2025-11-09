@@ -30,6 +30,10 @@ async def root():
 async def health_check():
     return {"status": "healthy", "service": "yildizay-backend"}
 
+@app.get("/api/content/test")
+async def test_content():
+    return {"message": "Content API test successful"}
+
 # Import content routes
 import routes.content as content_routes
 app.include_router(content_routes.router, prefix="/api/content")
