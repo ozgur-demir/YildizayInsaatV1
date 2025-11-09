@@ -268,18 +268,20 @@ async def get_estate_detail(estate_id: int):
         response.raise_for_status()
         result = response.json()
         
-        # Format cover URL for estate detail
-        if result.get('data', {}).get('item'):
-            estate_item = result['data']['item']
-            # Check for direct cover field
-            if estate_item.get('cover'):
-                estate_item['coverUrl'] = format_cover_url(estate_item['cover'])
-            # Also check medias array for cover image
-            elif estate_item.get('medias') and len(estate_item['medias']) > 0:
-                # Use first media file as cover
-                first_media = estate_item['medias'][0]
-                if first_media.get('file'):
-                    estate_item['coverUrl'] = format_cover_url(first_media['file'])
+        # API returns estate detail directly in data (not nested in item)
+        # Format cover URLs for medias array
+        if result.get('data'):
+            estate_data = result['data']
+            
+            # Format medias
+            if estate_data.get('medias'):
+                for media in estate_data['medias']:
+                    if media.get('file'):
+                        media['coverUrl'] = format_cover_url(media['file'])
+            
+            # Add coverUrl from first media as main cover
+            if estate_data.get('medias') and len(estate_data['medias']) > 0:
+                estate_data['coverUrl'] = format_cover_url(estate_data['medias'][0]['file'])
         
         return result
     except requests.exceptions.RequestException as e:
