@@ -8,6 +8,9 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [projectDetail, setProjectDetail] = useState(null);
   const [modalLoading, setModalLoading] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('all');
   const sectionRef = useRef(null);
 
   // Fetch projects from API
