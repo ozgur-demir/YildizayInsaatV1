@@ -121,6 +121,9 @@ backend:
       - working: true
         agent: "main"
         comment: "format_cover_url function correctly formats cover images to full URLs with UPLOADS_BASE_URL prefix. All endpoints return coverUrl field."
+      - working: true
+        agent: "testing"
+        comment: "✅ API Image URL Formatting WORKING: Cover URLs are properly formatted to http://yildizaycp.ozdsystems.com/uploads/{filename} format. Tested on estate detail and featured estate endpoints. Image server is accessible. Fixed backend code to handle actual external API response structure (data returned directly, not wrapped in 'item' field)."
 
   - task: "Featured Estate API Endpoint"
     implemented: true
