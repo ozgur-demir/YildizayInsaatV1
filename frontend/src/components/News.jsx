@@ -22,16 +22,16 @@ const News = () => {
         
         // Transform API data and take only first 3
         const formattedNews = newsData.slice(0, 3).map(article => ({
-          id: article.item?.id,
-          title: article.item?.name || 'Haber',
-          excerpt: article.item?.shortDesc || 'Detaylar için tıklayın...',
-          date: article.item?.createdAt ? new Date(article.item.createdAt).toLocaleDateString('tr-TR', {
+          id: article.id,
+          title: article.name || 'Haber',
+          excerpt: article.shortDesc || 'Detaylar için tıklayın...',
+          date: article.createdAt ? new Date(article.createdAt).toLocaleDateString('tr-TR', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
           }) : 'Yakında',
-          image: article.item?.coverUrl || 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076',
-          url: article.item?.url
+          image: article.coverUrl || 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2076',
+          url: article.url
         }));
         
         setNewsArticles(formattedNews.length > 0 ? formattedNews : getFallbackNews());
