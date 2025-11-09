@@ -8,6 +8,7 @@ const Hero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
+  // Fetch featured project from API
   useEffect(() => {
     const fetchFeaturedProject = async () => {
       try {
@@ -27,6 +28,66 @@ const Hero = () => {
 
     fetchFeaturedProject();
   }, []);
+
+  // Handle featured project modal
+  const handleFeaturedProjectClick = async () => {
+    if (!featuredProject?.id) return;
+    
+    setShowProjectModal(true);
+    setModalLoading(true);
+    setCurrentImageIndex(0);
+    
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const response = await fetch(`${backendUrl}/api/content/estates/${featuredProject.id}`);
+      
+      if (response.ok) {
+        const result = await response.json();
+        setProjectDetail(result.data);
+      } else {
+        setProjectDetail(null);
+      }
+    } catch (err) {
+      console.error('Error fetching project detail:', err);
+      setProjectDetail(null);
+    } finally {
+      setModalLoading(false);
+    }
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setShowProjectModal(false);
+    setProjectDetail(null);
+    setCurrentImageIndex(0);
+    setLightboxOpen(false);
+  };
+
+  // Navigate slider
+  const nextImage = () => {
+    if (projectDetail?.medias) {
+      setCurrentImageIndex((prev) => 
+        prev === projectDetail.medias.length - 1 ? 0 : prev + 1
+      );
+    }
+  };
+
+  const prevImage = () => {
+    if (projectDetail?.medias) {
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? projectDetail.medias.length - 1 : prev - 1
+      );
+    }
+  };
+
+  // Close modal on ESC key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape' && showProjectModal) closeModal();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [showProjectModal]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
