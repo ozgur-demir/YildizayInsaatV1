@@ -268,22 +268,22 @@ async def get_estate_detail(estate_id: int):
         response.raise_for_status()
         result = response.json()
         
-        # API returns data as an ARRAY with single item
-        if result.get('data') and isinstance(result['data'], list) and len(result['data']) > 0:
-            estate_data = result['data'][0]  # Get first item from array
+        # API returns data.item structure
+        if result.get('data', {}).get('item'):
+            estate_item = result['data']['item']
             
             # Format medias
-            if estate_data.get('medias'):
-                for media in estate_data['medias']:
+            if estate_item.get('medias'):
+                for media in estate_item['medias']:
                     if media.get('file'):
                         media['coverUrl'] = format_cover_url(media['file'])
             
             # Add coverUrl from first media as main cover
-            if estate_data.get('medias') and len(estate_data['medias']) > 0:
-                estate_data['coverUrl'] = format_cover_url(estate_data['medias'][0]['file'])
+            if estate_item.get('medias') and len(estate_item['medias']) > 0:
+                estate_item['coverUrl'] = format_cover_url(estate_item['medias'][0]['file'])
             
-            # Return the processed single item (not array)
-            return {"data": estate_data, "errors": result.get('errors')}
+            # Return flattened structure (item fields at root level)
+            return {"data": estate_item, "errors": result.get('errors')}
         
         return result
     except requests.exceptions.RequestException as e:
