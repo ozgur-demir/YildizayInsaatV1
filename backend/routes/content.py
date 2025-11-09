@@ -6,7 +6,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/api/content", tags=["content"])
+router = APIRouter(tags=["content"])
 
 # API Configuration
 BASE_URL = "http://yildizaycp.ozdsystems.com/api"
