@@ -4,6 +4,9 @@ const News = () => {
   const [visibleCards, setVisibleCards] = useState([]);
   const [newsArticles, setNewsArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedNews, setSelectedNews] = useState(null);
+  const [newsDetail, setNewsDetail] = useState(null);
+  const [modalLoading, setModalLoading] = useState(false);
   const sectionRef = useRef(null);
 
   // Fetch news from API
