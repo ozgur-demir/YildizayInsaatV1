@@ -10,6 +10,7 @@ router = APIRouter(tags=["content"])
 
 # API Configuration
 BASE_URL = "http://yildizaycp.ozdsystems.com/api"
+UPLOADS_BASE_URL = "http://yildizaycp.ozdsystems.com/uploads"
 USERNAME = "yildizay"
 PASSWORD = "sjb5M5t6ATEQF6L"
 
@@ -47,6 +48,14 @@ def get_auth_token():
         logger.error(f"Failed to get auth token: {str(e)}")
         raise HTTPException(status_code=500, detail="Authentication failed")
 
+def format_cover_url(cover):
+    """Format cover URL"""
+    if not cover:
+        return None
+    if cover.startswith('http'):
+        return cover
+    return f"{UPLOADS_BASE_URL}/{cover}"
+
 @router.get("/blogs")
 async def get_blogs():
     """Get all blog posts"""
@@ -58,7 +67,15 @@ async def get_blogs():
             timeout=10
         )
         response.raise_for_status()
-        return response.json()
+        result = response.json()
+        
+        # Format cover URLs
+        if result.get('data'):
+            for item in result['data']:
+                if item.get('item', {}).get('cover'):
+                    item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
+        
+        return result
     except requests.exceptions.RequestException as e:
         logger.error(f"Failed to fetch blogs: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to fetch blogs")
@@ -78,7 +95,15 @@ async def get_estates(category_id: int = None):
             timeout=10
         )
         response.raise_for_status()
-        return response.json()
+        result = response.json()
+        
+        # Format cover URLs
+        if result.get('data'):
+            for item in result['data']:
+                if item.get('item', {}).get('cover'):
+                    item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
+        
+        return result
     except requests.exceptions.RequestException as e:
         logger.error(f"Failed to fetch estates: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to fetch estates")
@@ -94,7 +119,15 @@ async def get_ongoing_estates():
             timeout=10
         )
         response.raise_for_status()
-        return response.json()
+        result = response.json()
+        
+        # Format cover URLs
+        if result.get('data'):
+            for item in result['data']:
+                if item.get('item', {}).get('cover'):
+                    item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
+        
+        return result
     except requests.exceptions.RequestException as e:
         logger.error(f"Failed to fetch ongoing estates: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to fetch ongoing estates")
@@ -110,10 +143,43 @@ async def get_completed_estates():
             timeout=10
         )
         response.raise_for_status()
-        return response.json()
+        result = response.json()
+        
+        # Format cover URLs
+        if result.get('data'):
+            for item in result['data']:
+                if item.get('item', {}).get('cover'):
+                    item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
+        
+        return result
     except requests.exceptions.RequestException as e:
         logger.error(f"Failed to fetch completed estates: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to fetch completed estates")
+
+@router.get("/estates/featured")
+async def get_featured_estate():
+    """Get featured estate (category 20)"""
+    try:
+        token = get_auth_token()
+        response = requests.get(
+            f"{BASE_URL}/content/estates?categoryId=20",
+            headers={"Authorization": f"Bearer {token}"},
+            timeout=10
+        )
+        response.raise_for_status()
+        result = response.json()
+        
+        # Get first item and format cover URL
+        if result.get('data') and len(result['data']) > 0:
+            item = result['data'][0]
+            if item.get('item', {}).get('cover'):
+                item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
+            return {"data": item, "statusCode": 200, "errors": None}
+        
+        return {"data": None, "statusCode": 200, "errors": None}
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Failed to fetch featured estate: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to fetch featured estate")
 
 @router.get("/estates/{estate_id}")
 async def get_estate_detail(estate_id: int):
@@ -126,7 +192,13 @@ async def get_estate_detail(estate_id: int):
             timeout=10
         )
         response.raise_for_status()
-        return response.json()
+        result = response.json()
+        
+        # Format cover URL
+        if result.get('data', {}).get('item', {}).get('cover'):
+            result['data']['item']['coverUrl'] = format_cover_url(result['data']['item']['cover'])
+        
+        return result
     except requests.exceptions.RequestException as e:
         logger.error(f"Failed to fetch estate detail: {str(e)}")
         raise HTTPException(status_code=500, detail="Failed to fetch estate detail")
