@@ -6,7 +6,7 @@ const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
-    phone: '',
+    phone: '90',  // Default to Turkey (+90)
     email: '',
     message: ''
   });
