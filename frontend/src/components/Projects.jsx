@@ -97,6 +97,8 @@ const Projects = () => {
       
       if (response.ok) {
         const result = await response.json();
+        console.log('Project Detail Response:', result);
+        console.log('Details Content:', result.data?.details?.content);
         setProjectDetail(result.data);
       } else {
         setProjectDetail(null);
