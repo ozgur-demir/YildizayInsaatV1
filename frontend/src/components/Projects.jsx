@@ -13,12 +13,22 @@ const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const sectionRef = useRef(null);
 
-  // Fetch projects from API
+  // Fetch projects from API based on filter
   useEffect(() => {
     const fetchProjects = async () => {
+      setLoading(true);
       try {
         const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-        const response = await fetch(`${backendUrl}/api/content/estates`);
+        let endpoint = `${backendUrl}/api/content/estates`;
+        
+        // Determine endpoint based on filter
+        if (activeFilter === 'completed') {
+          endpoint = `${backendUrl}/api/content/estates/completed`;
+        } else if (activeFilter === 'ongoing') {
+          endpoint = `${backendUrl}/api/content/estates/ongoing`;
+        }
+        
+        const response = await fetch(endpoint);
         
         if (!response.ok) {
           throw new Error('Failed to fetch projects');
@@ -33,7 +43,8 @@ const Projects = () => {
           title: project.name || 'Proje',
           category: project.location || 'Konut',
           image: project.coverUrl || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070',
-          url: project.url
+          url: project.url,
+          status: project.status || 'completed'
         }));
         
         setProjects(formattedProjects);
@@ -48,7 +59,7 @@ const Projects = () => {
     };
 
     fetchProjects();
-  }, []);
+  }, [activeFilter]);
 
   // Intersection Observer for animations
   useEffect(() => {
