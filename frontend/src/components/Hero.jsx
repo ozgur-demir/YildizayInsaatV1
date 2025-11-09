@@ -246,6 +246,164 @@ const Hero = () => {
           <div className="w-1 h-1 bg-[hsl(45,100%,55%)] rounded-full animate-pulse"></div>
         </div>
       </div>
+
+      {/* Featured Project Detail Modal - Same as Projects.jsx */}
+      {showProjectModal && (
+        <div 
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-fade-in"
+          onClick={closeModal}
+        >
+          <div 
+            className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 w-10 h-10 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 z-10"
+            >
+              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {modalLoading ? (
+              <div className="p-12 text-center">
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[hsl(355,65%,45%)]"></div>
+                <p className="mt-4 text-gray-600">Proje detayları yükleniyor...</p>
+              </div>
+            ) : projectDetail ? (
+              <>
+                {/* Modal Header - Image Slider */}
+                {projectDetail.medias && projectDetail.medias.length > 0 ? (
+                  <div className="relative h-96 overflow-hidden rounded-t-2xl bg-gray-900">
+                    <img 
+                      src={`https://yildizaycp.ozdsystems.com/uploads/${projectDetail.medias[currentImageIndex].file}`}
+                      alt={`${projectDetail.name} - ${currentImageIndex + 1}`}
+                      className="w-full h-full object-cover cursor-pointer"
+                      onClick={() => setLightboxOpen(true)}
+                    />
+                    
+                    {projectDetail.medias.length > 1 && (
+                      <>
+                        <button
+                          onClick={prevImage}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
+                        >
+                          <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={nextImage}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
+                        >
+                          <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </>
+                    )}
+                    
+                    <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+                      {currentImageIndex + 1} / {projectDetail.medias.length}
+                    </div>
+                    
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h2 className="text-3xl font-bold text-white mb-2">{projectDetail.name}</h2>
+                      {projectDetail.location && (
+                        <div className="flex items-center text-white/90">
+                          <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                          </svg>
+                          <span className="font-medium">{projectDetail.location}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ) : projectDetail.coverUrl && (
+                  <div className="relative h-72 overflow-hidden rounded-t-2xl">
+                    <img src={projectDetail.coverUrl} alt={projectDetail.name} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h2 className="text-3xl font-bold text-white mb-2">{projectDetail.name}</h2>
+                    </div>
+                  </div>
+                )}
+
+                {/* Modal Content */}
+                <div className="p-8">
+                  {projectDetail.shortDesc && (
+                    <div className="mb-6">
+                      <p className="text-lg text-gray-700 leading-relaxed font-medium">{projectDetail.shortDesc}</p>
+                    </div>
+                  )}
+
+                  {projectDetail.details && projectDetail.details.length > 0 && projectDetail.details[0]?.content && (
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-800 mb-3">Proje Detayları</h3>
+                      <div 
+                        className="text-gray-600 leading-relaxed prose max-w-none"
+                        dangerouslySetInnerHTML={{ __html: projectDetail.details[0].content }}
+                      />
+                    </div>
+                  )}
+
+                  <div className="mt-8 flex justify-center">
+                    <button
+                      onClick={closeModal}
+                      className="px-8 py-4 bg-gradient-to-r from-[hsl(355,65%,50%)] to-[hsl(355,65%,42%)] hover:from-[hsl(355,65%,55%)] hover:to-[hsl(355,65%,47%)] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      Kapat
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="p-12 text-center">
+                <p className="text-gray-600">Proje detayları yüklenemedi.</p>
+                <button onClick={closeModal} className="mt-4 px-6 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors">Kapat</button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox */}
+      {lightboxOpen && projectDetail?.medias && (
+        <div className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-4" onClick={() => setLightboxOpen(false)}>
+          <button onClick={() => setLightboxOpen(false)} className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all z-10">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="relative max-w-7xl w-full" onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={`https://yildizaycp.ozdsystems.com/uploads/${projectDetail.medias[currentImageIndex].file}`}
+              alt={`${projectDetail.name} - ${currentImageIndex + 1}`}
+              className="w-full h-auto max-h-[90vh] object-contain"
+            />
+            {projectDetail.medias.length > 1 && (
+              <>
+                <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm">
+              {currentImageIndex + 1} / {projectDetail.medias.length}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
