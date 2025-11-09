@@ -135,7 +135,10 @@ const Hero = () => {
             <div className="hidden lg:block">
               <div className="relative animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                 {/* Glassmorphism Card */}
-                <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl animate-float">
+                <div 
+                  className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl animate-float cursor-pointer hover:bg-white/15 transition-all duration-300"
+                  onClick={() => setShowProjectModal(true)}
+                >
                   {/* Glows */}
                   <div className="absolute -top-6 -right-6 w-32 h-32 bg-[hsl(45,100%,55%)] rounded-full opacity-20 blur-3xl"></div>
                   <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[hsl(355,65%,50%)] rounded-full opacity-15 blur-3xl"></div>
@@ -158,6 +161,12 @@ const Hero = () => {
                     <p className="text-white/70 text-sm leading-relaxed">
                       {featuredProject.shortDesc || 'Proje açıklaması burada gösterilecek.'}
                     </p>
+                    <div className="text-[hsl(45,100%,55%)] text-sm font-semibold flex items-center">
+                      Detayları Görüntüle
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
