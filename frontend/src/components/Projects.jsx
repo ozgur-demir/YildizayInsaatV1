@@ -257,8 +257,61 @@ const Projects = () => {
                 </div>
               ) : projectDetail ? (
                 <>
-                  {/* Modal Header Image */}
-                  {projectDetail.item?.coverUrl && (
+                  {/* Modal Header - Image Slider */}
+                  {projectDetail.item?.medias && projectDetail.item.medias.length > 0 ? (
+                    <div className="relative h-96 overflow-hidden rounded-t-2xl bg-gray-900">
+                      {/* Current Image */}
+                      <img 
+                        src={`https://yildizaycp.ozdsystems.com/uploads/${projectDetail.item.medias[currentImageIndex].file}`}
+                        alt={`${projectDetail.item.name} - ${currentImageIndex + 1}`}
+                        className="w-full h-full object-cover cursor-pointer"
+                        onClick={() => setLightboxOpen(true)}
+                      />
+                      
+                      {/* Navigation Arrows */}
+                      {projectDetail.item.medias.length > 1 && (
+                        <>
+                          <button
+                            onClick={prevImage}
+                            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
+                          >
+                            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                          </button>
+                          <button
+                            onClick={nextImage}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all z-10"
+                          >
+                            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        </>
+                      )}
+                      
+                      {/* Image Counter */}
+                      <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+                        {currentImageIndex + 1} / {projectDetail.item.medias.length}
+                      </div>
+                      
+                      {/* Overlay with Title */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-6 left-6 right-6">
+                        <h2 className="text-3xl font-bold text-white mb-2">
+                          {projectDetail.item.name}
+                        </h2>
+                        {projectDetail.item?.location && (
+                          <div className="flex items-center text-white/90">
+                            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                            </svg>
+                            <span className="font-medium">{projectDetail.item.location}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ) : projectDetail.item?.coverUrl && (
                     <div className="relative h-72 overflow-hidden rounded-t-2xl">
                       <img 
                         src={projectDetail.item.coverUrl} 
