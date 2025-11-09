@@ -303,9 +303,9 @@ async def get_blog_detail(blog_id: int):
         response.raise_for_status()
         result = response.json()
         
-        # API returns data as an ARRAY with single item (similar to estates)
-        if result.get('data') and isinstance(result['data'], list) and len(result['data']) > 0:
-            blog_item = result['data'][0]  # Get first item from array
+        # API returns data.item structure (similar to estates)
+        if result.get('data', {}).get('item'):
+            blog_item = result['data']['item']
             
             # Check for direct cover field
             if blog_item.get('cover'):
@@ -316,7 +316,7 @@ async def get_blog_detail(blog_id: int):
                 if first_media.get('file'):
                     blog_item['coverUrl'] = format_cover_url(first_media['file'])
             
-            # Return the processed single item (not array)
+            # Return flattened structure (item fields at root level)
             return {"data": blog_item, "errors": result.get('errors')}
         
         return result
