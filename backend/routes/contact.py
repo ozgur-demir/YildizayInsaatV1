@@ -80,14 +80,16 @@ Bu mesaj yildizay.com.tr iletişim formundan gönderilmiştir.
         message.attach(part1)
         message.attach(part2)
         
-        # Send email
+        # Send email with explicit TLS settings
         await aiosmtplib.send(
             message,
             hostname=SMTP_HOST,
             port=SMTP_PORT,
             username=SMTP_USER,
             password=SMTP_PASSWORD,
-            start_tls=True
+            start_tls=True,
+            timeout=30,
+            use_tls=False  # Use STARTTLS instead of direct TLS
         )
         
         logger.info(f"Contact form email sent successfully from {form.email}")
