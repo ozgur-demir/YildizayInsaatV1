@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import InputMask from 'react-input-mask';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
