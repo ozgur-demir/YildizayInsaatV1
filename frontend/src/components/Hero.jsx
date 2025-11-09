@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 const Hero = () => {
   const [featuredProject, setFeaturedProject] = useState(null);
+  const [showProjectModal, setShowProjectModal] = useState(false);
 
   useEffect(() => {
     const fetchFeaturedProject = async () => {
