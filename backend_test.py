@@ -255,8 +255,8 @@ class APITester:
                 "No estate IDs available for testing (estates endpoint may have failed)")
             return
         
-        # Test with first available estate ID
-        estate_id = self.estate_ids[0]
+        # Test with estate ID 4 which has media data and is featured
+        estate_id = 4 if 4 in self.estate_ids else self.estate_ids[0]
         endpoint = f"/content/estates/{estate_id}"
         
         data = self.test_endpoint(endpoint, f"Estate Detail Endpoint (ID: {estate_id})", ["data", "statusCode"])
