@@ -2,6 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 import logging
+import sys
+
+# Add backend directory to path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # Configure logging
 logging.basicConfig(
@@ -24,11 +28,11 @@ app.add_middleware(
 
 # Import and include routers
 try:
-    from routes.content import router as content_router
-    app.include_router(content_router)
+    from routes import content
+    app.include_router(content.router)
     logger.info("Content router registered successfully")
 except Exception as e:
-    logger.error(f"Failed to register content router: {str(e)}")
+    logger.error(f"Failed to register content router: {str(e)}", exc_info=True)
 
 @app.get("/")
 async def root():
