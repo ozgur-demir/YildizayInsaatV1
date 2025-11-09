@@ -140,11 +140,14 @@ backend:
     file: "/app/backend/routes/content.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "GET /api/content/estates/{estate_id} endpoint exists for fetching single estate details. Needs testing with modal implementation."
+      - working: true
+        agent: "testing"
+        comment: "✅ Estate Detail API Endpoint WORKING: Successfully returns estate details with proper data structure (name, shortDesc, medias). Cover URLs are correctly formatted to http://yildizaycp.ozdsystems.com/uploads/{filename}. Estate ID 4 tested successfully. Minor: Estate statistics (roomCount, bathroomCount, etc.) not available from external API but not critical for modal functionality."
 
 frontend:
   - task: "Hero Section - Featured Project Integration"
