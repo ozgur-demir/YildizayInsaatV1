@@ -312,6 +312,7 @@ const Projects = () => {
                         className="w-full h-full object-cover cursor-pointer"
                         onClick={(e) => {
                           e.stopPropagation();
+                          console.log('Image clicked, opening lightbox');
                           setLightboxOpen(true);
                         }}
                       />
