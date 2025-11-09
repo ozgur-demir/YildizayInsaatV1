@@ -69,18 +69,11 @@ async def get_blogs():
         response.raise_for_status()
         result = response.json()
         
-        # Format cover URLs - external API returns data directly
+        # Format cover URLs
         if result.get('data'):
             for item in result['data']:
-                # Check for direct cover field
-                if item.get('cover'):
-                    item['coverUrl'] = format_cover_url(item['cover'])
-                # Also check medias array for cover image
-                elif item.get('medias') and len(item['medias']) > 0:
-                    # Use first media file as cover
-                    first_media = item['medias'][0]
-                    if first_media.get('file'):
-                        item['coverUrl'] = format_cover_url(first_media['file'])
+                if item.get('item', {}).get('cover'):
+                    item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
         
         return result
     except requests.exceptions.RequestException as e:
@@ -104,18 +97,11 @@ async def get_estates(category_id: int = None):
         response.raise_for_status()
         result = response.json()
         
-        # Format cover URLs - external API returns data directly
+        # Format cover URLs
         if result.get('data'):
             for item in result['data']:
-                # Check for direct cover field
-                if item.get('cover'):
-                    item['coverUrl'] = format_cover_url(item['cover'])
-                # Also check medias array for cover image
-                elif item.get('medias') and len(item['medias']) > 0:
-                    # Use first media file as cover
-                    first_media = item['medias'][0]
-                    if first_media.get('file'):
-                        item['coverUrl'] = format_cover_url(first_media['file'])
+                if item.get('item', {}).get('cover'):
+                    item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
         
         return result
     except requests.exceptions.RequestException as e:
@@ -135,18 +121,11 @@ async def get_ongoing_estates():
         response.raise_for_status()
         result = response.json()
         
-        # Format cover URLs - external API returns data directly
+        # Format cover URLs
         if result.get('data'):
             for item in result['data']:
-                # Check for direct cover field
-                if item.get('cover'):
-                    item['coverUrl'] = format_cover_url(item['cover'])
-                # Also check medias array for cover image
-                elif item.get('medias') and len(item['medias']) > 0:
-                    # Use first media file as cover
-                    first_media = item['medias'][0]
-                    if first_media.get('file'):
-                        item['coverUrl'] = format_cover_url(first_media['file'])
+                if item.get('item', {}).get('cover'):
+                    item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
         
         return result
     except requests.exceptions.RequestException as e:
@@ -166,18 +145,11 @@ async def get_completed_estates():
         response.raise_for_status()
         result = response.json()
         
-        # Format cover URLs - external API returns data directly
+        # Format cover URLs
         if result.get('data'):
             for item in result['data']:
-                # Check for direct cover field
-                if item.get('cover'):
-                    item['coverUrl'] = format_cover_url(item['cover'])
-                # Also check medias array for cover image
-                elif item.get('medias') and len(item['medias']) > 0:
-                    # Use first media file as cover
-                    first_media = item['medias'][0]
-                    if first_media.get('file'):
-                        item['coverUrl'] = format_cover_url(first_media['file'])
+                if item.get('item', {}).get('cover'):
+                    item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
         
         return result
     except requests.exceptions.RequestException as e:
@@ -200,15 +172,8 @@ async def get_featured_estate():
         # Get first item and format cover URL
         if result.get('data') and len(result['data']) > 0:
             item = result['data'][0]
-            # Check for direct cover field
-            if item.get('cover'):
-                item['coverUrl'] = format_cover_url(item['cover'])
-            # Also check medias array for cover image
-            elif item.get('medias') and len(item['medias']) > 0:
-                # Use first media file as cover
-                first_media = item['medias'][0]
-                if first_media.get('file'):
-                    item['coverUrl'] = format_cover_url(first_media['file'])
+            if item.get('item', {}).get('cover'):
+                item['item']['coverUrl'] = format_cover_url(item['item']['cover'])
             return {"data": item, "statusCode": 200, "errors": None}
         
         return {"data": None, "statusCode": 200, "errors": None}
@@ -229,18 +194,9 @@ async def get_estate_detail(estate_id: int):
         response.raise_for_status()
         result = response.json()
         
-        # Format cover URL for estate detail
-        if result.get('data', {}).get('item'):
-            estate_item = result['data']['item']
-            # Check for direct cover field
-            if estate_item.get('cover'):
-                estate_item['coverUrl'] = format_cover_url(estate_item['cover'])
-            # Also check medias array for cover image
-            elif estate_item.get('medias') and len(estate_item['medias']) > 0:
-                # Use first media file as cover
-                first_media = estate_item['medias'][0]
-                if first_media.get('file'):
-                    estate_item['coverUrl'] = format_cover_url(first_media['file'])
+        # Format cover URL
+        if result.get('data', {}).get('item', {}).get('cover'):
+            result['data']['item']['coverUrl'] = format_cover_url(result['data']['item']['cover'])
         
         return result
     except requests.exceptions.RequestException as e:
