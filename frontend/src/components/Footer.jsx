@@ -166,8 +166,8 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@yildizay.com" className="hover:text-[hsl(45,100%,55%)] transition-colors">
-                  info@yildizay.com
+                <a href="mailto:info@yildizay.com.tr" className="hover:text-[hsl(45,100%,55%)] transition-colors">
+                  info@yildizay.com.tr
                 </a>
               </li>
             </ul>
