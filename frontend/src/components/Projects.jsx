@@ -69,6 +69,46 @@ const Projects = () => {
     };
   }, [projects]);
 
+  // Handle project click to show modal
+  const handleProjectClick = async (project) => {
+    if (!project.id) return;
+    
+    setSelectedProject(project);
+    setModalLoading(true);
+    
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const response = await fetch(`${backendUrl}/api/content/estates/${project.id}`);
+      
+      if (response.ok) {
+        const result = await response.json();
+        setProjectDetail(result.data);
+      } else {
+        setProjectDetail(null);
+      }
+    } catch (err) {
+      console.error('Error fetching project detail:', err);
+      setProjectDetail(null);
+    } finally {
+      setModalLoading(false);
+    }
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setSelectedProject(null);
+    setProjectDetail(null);
+  };
+
+  // Close modal on ESC key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') closeModal();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
   const getFallbackProjects = () => [
     {
       title: 'Modern Konut Kompleksi',
