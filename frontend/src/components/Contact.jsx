@@ -102,10 +102,18 @@ const Contact = () => {
           setFormData({ name: '', phone: '', email: '', message: '' });
           setErrors({});
         } else {
-          setSubmitMessage({
-            type: 'error',
-            text: result.detail || 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.'
-          });
+          // Handle specific error codes
+          if (response.status === 429) {
+            setSubmitMessage({
+              type: 'error',
+              text: result.detail || 'Çok fazla istek gönderildi. Lütfen birkaç dakika sonra tekrar deneyin.'
+            });
+          } else {
+            setSubmitMessage({
+              type: 'error',
+              text: result.detail || 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.'
+            });
+          }
         }
       } catch (error) {
         console.error('Form submission error:', error);
