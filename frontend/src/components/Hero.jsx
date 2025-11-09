@@ -140,22 +140,22 @@ const Hero = () => {
                   <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[hsl(355,65%,50%)] rounded-full opacity-15 blur-3xl"></div>
                   
                   <img 
-                    src={featuredProject.item?.coverUrl || 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931'} 
-                    alt={featuredProject.item?.name || 'Featured Project'} 
+                    src={featuredProject.coverUrl || 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931'} 
+                    alt={featuredProject.name || 'Featured Project'} 
                     className="w-full h-80 object-cover rounded-xl mb-6 ring-2 ring-white/10"
                   />
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-white/80 text-sm font-medium">
-                        {featuredProject.itemDetail?.meta?.content || 'Öne Çıkan Proje'}
+                        Öne Çıkan Proje
                       </span>
                       <span className="px-3 py-1 bg-[hsl(45,100%,55%)]/20 text-[hsl(45,100%,60%)] text-xs font-bold rounded-full border border-[hsl(45,100%,55%)]/30">2024</span>
                     </div>
                     <h3 className="text-2xl font-bold text-white">
-                      {featuredProject.item?.name || 'Proje Adı'}
+                      {featuredProject.name || 'Proje Adı'}
                     </h3>
                     <p className="text-white/70 text-sm leading-relaxed">
-                      {featuredProject.item?.shortDesc || 'Proje açıklaması burada gösterilecek.'}
+                      {featuredProject.shortDesc || 'Proje açıklaması burada gösterilecek.'}
                     </p>
                   </div>
                 </div>
