@@ -82,20 +82,26 @@ Bu mesaj yildizay.com.tr iletişim formundan gönderilmiştir.
         message.attach(part2)
         
         # Send email with GoDaddy SMTP settings
-        # emailSSLEnable: false - Don't use direct SSL/TLS, use STARTTLS
+        # emailSSLEnable: false - Port 587 with STARTTLS
         try:
+            # Create SMTP connection
             smtp = aiosmtplib.SMTP(
                 hostname=SMTP_HOST,
                 port=SMTP_PORT,
-                use_tls=False,  # No direct TLS connection
                 timeout=60
             )
             
             logger.info("Connecting to SMTP server...")
             await smtp.connect()
             
-            logger.info("Starting TLS...")
-            await smtp.starttls()
+            # Check if STARTTLS is available and start it
+            if smtp.is_connected and not smtp.is_ehlo_or_helo_needed:
+                logger.info("Starting TLS...")
+                try:
+                    await smtp.starttls()
+                except aiosmtplib.SMTPException as tls_error:
+                    # If STARTTLS fails because TLS already active, continue
+                    logger.warning(f"STARTTLS warning: {str(tls_error)}")
             
             logger.info("Logging in...")
             await smtp.login(SMTP_USER, SMTP_PASSWORD)
