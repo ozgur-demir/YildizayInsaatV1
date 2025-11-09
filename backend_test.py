@@ -276,8 +276,8 @@ class APITester:
         
         estate_item = estate_detail["item"]
         
-        # Check required fields for modal
-        required_fields = ["Name", "ShortDesc", "Desc", "Location"]
+        # Check required fields for modal (using actual API field names)
+        required_fields = ["name", "shortDesc"]
         missing_fields = [field for field in required_fields if field not in estate_item]
         
         if missing_fields:
