@@ -171,6 +171,7 @@ const Projects = () => {
               <div
                 key={project.id || index}
                 data-index={index}
+                onClick={() => handleProjectClick(project)}
                 className={`project-card group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer ${
                   visibleCards.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
