@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 const Hero = () => {
   const [featuredProject, setFeaturedProject] = useState(null);
   const [showProjectModal, setShowProjectModal] = useState(false);
+  const [projectDetail, setProjectDetail] = useState(null);
+  const [modalLoading, setModalLoading] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     const fetchFeaturedProject = async () => {
