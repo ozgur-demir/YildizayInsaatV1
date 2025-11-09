@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/content", tags=["content"])
 
 # API Configuration
-BASE_URL = "https://yildizaycp.ozdsystems.com/api"
+BASE_URL = "http://yildizaycp.ozdsystems.com/api"
 USERNAME = "yildizay"
 PASSWORD = "sjb5M5t6ATEQF6L"
 
