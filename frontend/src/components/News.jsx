@@ -160,7 +160,8 @@ const News = () => {
               <article
                 key={article.id || index}
                 data-index={index}
-                className={`news-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 group ${
+                onClick={() => handleNewsClick(article)}
+                className={`news-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 group cursor-pointer ${
                   visibleCards.includes(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
