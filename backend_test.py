@@ -224,8 +224,8 @@ class APITester:
         # The featured estate endpoint now returns data directly, not wrapped in "item"
         estate_item = featured_estate
         
-        # Check required fields for hero section
-        required_fields = ["Name", "ShortDesc"]
+        # Check required fields for hero section (using actual API field names)
+        required_fields = ["name", "shortDesc"]
         missing_fields = [field for field in required_fields if field not in estate_item]
         
         if missing_fields:
@@ -234,7 +234,7 @@ class APITester:
                 {"available_fields": list(estate_item.keys())})
         else:
             self.log_result("Featured Estate Required Fields", True, 
-                "Required fields present for hero section (Name, ShortDesc)")
+                "Required fields present for hero section (name, shortDesc)")
         
         # Check for coverUrl
         if "coverUrl" in estate_item:
