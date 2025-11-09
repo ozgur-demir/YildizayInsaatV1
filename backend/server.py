@@ -69,6 +69,14 @@ async def get_status_checks():
 # Include the router in the main app
 app.include_router(api_router)
 
+# Import and include content routes
+try:
+    from routes import content
+    app.include_router(content.router, prefix="/api/content")
+    logger.info("Content router registered successfully")
+except Exception as e:
+    logger.error(f"Failed to register content router: {str(e)}", exc_info=True)
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
