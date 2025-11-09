@@ -81,17 +81,20 @@ Bu mesaj yildizay.com.tr iletişim formundan gönderilmiştir.
         message.attach(part1)
         message.attach(part2)
         
-        # Send email with explicit TLS settings
-        await aiosmtplib.send(
-            message,
+        # Send email with GoDaddy SMTP settings
+        # emailSSLEnable: false - Don't use direct SSL/TLS, use STARTTLS
+        smtp = aiosmtplib.SMTP(
             hostname=SMTP_HOST,
             port=SMTP_PORT,
-            username=SMTP_USER,
-            password=SMTP_PASSWORD,
-            start_tls=True,
-            timeout=30,
-            use_tls=False  # Use STARTTLS instead of direct TLS
+            use_tls=False,  # No direct TLS connection
+            start_tls=True,  # Use STARTTLS after connection
+            timeout=60
         )
+        
+        await smtp.connect()
+        await smtp.login(SMTP_USER, SMTP_PASSWORD)
+        await smtp.send_message(message)
+        await smtp.quit()
         
         logger.info(f"Contact form email sent successfully from {form.email}")
         return {
