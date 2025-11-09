@@ -2,10 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 import logging
-import sys
-
-# Add backend directory to path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # Configure logging
 logging.basicConfig(
@@ -26,14 +22,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Import and include routers
-try:
-    from routes import content
-    app.include_router(content.router)
-    logger.info("Content router registered successfully")
-except Exception as e:
-    logger.error(f"Failed to register content router: {str(e)}", exc_info=True)
-
 @app.get("/")
 async def root():
     return {"message": "YILDIZAY API is running"}
@@ -41,6 +29,12 @@ async def root():
 @app.get("/api/health")
 async def health_check():
     return {"status": "healthy", "service": "yildizay-backend"}
+
+# Import content routes
+import routes.content as content_routes
+app.include_router(content_routes.router)
+
+logger.info("Application started - routes registered")
 
 if __name__ == "__main__":
     import uvicorn
