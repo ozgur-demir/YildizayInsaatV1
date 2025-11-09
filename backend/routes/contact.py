@@ -38,13 +38,13 @@ async def send_contact_email(form: ContactForm):
         message['To'] = ', '.join(RECIPIENTS)
         message['Priority'] = 'urgent'  # MailPriority.High
         
-        # Email body HTML
+        # Email body HTML (as per C# code - IsBodyHtml = true)
         html_body = f"""
         <html>
             <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
                 <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
                     <h2 style="color: #c9302c; border-bottom: 2px solid #f0ad4e; padding-bottom: 10px;">
-                        Yeni İletişim Formu Mesajı
+                        İletişim Talebi
                     </h2>
                     <div style="margin: 20px 0;">
                         <p><strong>Ad Soyad:</strong> {form.name}</p>
