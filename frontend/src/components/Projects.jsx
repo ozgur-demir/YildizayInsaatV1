@@ -473,6 +473,56 @@ const Projects = () => {
             </div>
           </div>
         )}
+
+        {/* Lightbox for Image Viewing */}
+        {lightboxOpen && projectDetail?.item?.medias && (
+          <div 
+            className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-4"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all z-10"
+            >
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="relative max-w-7xl w-full" onClick={(e) => e.stopPropagation()}>
+              <img 
+                src={`https://yildizaycp.ozdsystems.com/uploads/${projectDetail.item.medias[currentImageIndex].file}`}
+                alt={`${projectDetail.item.name} - ${currentImageIndex + 1}`}
+                className="w-full h-auto max-h-[90vh] object-contain"
+              />
+              
+              {projectDetail.item.medias.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all"
+                  >
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all"
+                  >
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
+              
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm">
+                {currentImageIndex + 1} / {projectDetail.item.medias.length}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
