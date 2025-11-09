@@ -121,17 +121,17 @@ const Projects = () => {
 
   // Navigate slider
   const nextImage = () => {
-    if (projectDetail?.item?.medias) {
+    if (projectDetail?.medias) {
       setCurrentImageIndex((prev) => 
-        prev === projectDetail.item.medias.length - 1 ? 0 : prev + 1
+        prev === projectDetail.medias.length - 1 ? 0 : prev + 1
       );
     }
   };
 
   const prevImage = () => {
-    if (projectDetail?.item?.medias) {
+    if (projectDetail?.medias) {
       setCurrentImageIndex((prev) => 
-        prev === 0 ? projectDetail.item.medias.length - 1 : prev - 1
+        prev === 0 ? projectDetail.medias.length - 1 : prev - 1
       );
     }
   };
