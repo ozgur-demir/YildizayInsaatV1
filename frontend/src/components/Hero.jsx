@@ -202,7 +202,7 @@ const Hero = () => {
                 {/* Glassmorphism Card */}
                 <div 
                   className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl animate-float cursor-pointer hover:bg-white/15 transition-all duration-300"
-                  onClick={() => setShowProjectModal(true)}
+                  onClick={handleFeaturedProjectClick}
                 >
                   {/* Glows */}
                   <div className="absolute -top-6 -right-6 w-32 h-32 bg-[hsl(45,100%,55%)] rounded-full opacity-20 blur-3xl"></div>
