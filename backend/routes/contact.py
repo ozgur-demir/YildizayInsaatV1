@@ -33,9 +33,10 @@ async def send_contact_email(form: ContactForm):
     try:
         # Create email message
         message = MIMEMultipart('alternative')
-        message['Subject'] = f'Yeni İletişim Formu - {form.name}'
-        message['From'] = SMTP_FROM
+        message['Subject'] = 'İletişim Talebi'
+        message['From'] = f'{SMTP_FROM_NAME} <{SMTP_FROM}>'
         message['To'] = ', '.join(RECIPIENTS)
+        message['Priority'] = 'urgent'  # MailPriority.High
         
         # Email body HTML
         html_body = f"""
