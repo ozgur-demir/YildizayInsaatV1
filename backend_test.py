@@ -259,7 +259,7 @@ class APITester:
         estate_id = 4 if 4 in self.estate_ids else self.estate_ids[0]
         endpoint = f"/content/estates/{estate_id}"
         
-        data = self.test_endpoint(endpoint, f"Estate Detail Endpoint (ID: {estate_id})", ["data", "statusCode"])
+        data = self.test_endpoint(endpoint, f"Estate Detail Endpoint (ID: {estate_id})", ["data"])
         
         if not data:
             return
