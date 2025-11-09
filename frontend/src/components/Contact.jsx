@@ -281,10 +281,24 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full px-8 py-4 bg-gradient-to-r from-[hsl(4,75%,50%)] to-[hsl(4,75%,40%)] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
+                disabled={isSubmitting}
+                className="w-full px-8 py-4 bg-gradient-to-r from-[hsl(4,75%,50%)] to-[hsl(4,75%,40%)] text-white font-semibold rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Gönder
+                {isSubmitting ? 'Gönderiliyor...' : 'Gönder'}
               </button>
+
+              {/* Submit Message */}
+              {submitMessage.text && (
+                <div 
+                  className={`mt-4 p-4 rounded-lg ${
+                    submitMessage.type === 'success' 
+                      ? 'bg-green-50 text-green-700 border border-green-200' 
+                      : 'bg-red-50 text-red-700 border border-red-200'
+                  }`}
+                >
+                  {submitMessage.text}
+                </div>
+              )}
             </form>
           </div>
         </div>
