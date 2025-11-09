@@ -84,35 +84,32 @@ Bu mesaj yildizay.com.tr iletişim formundan gönderilmiştir.
         message.attach(part1)
         message.attach(part2)
         
-        # Send email with GoDaddy SMTP settings
-        # emailSSLEnable: false - Port 587 with STARTTLS
+        # Send email with Yildizay SMTP settings
+        # EnableSsl: false, UseDefaultCredentials: false, Port: 587
         try:
-            # Create SMTP connection
+            logger.info(f"Connecting to {SMTP_HOST}:{SMTP_PORT}...")
+            
+            # Create SMTP connection (UseDefaultCredentials: false)
             smtp = aiosmtplib.SMTP(
                 hostname=SMTP_HOST,
                 port=SMTP_PORT,
+                use_tls=False,  # EnableSsl: false - no direct TLS
                 timeout=60
             )
             
-            logger.info("Connecting to SMTP server...")
             await smtp.connect()
+            logger.info("Connected successfully")
             
-            # Check if STARTTLS is available and start it
-            if smtp.is_connected and not smtp.is_ehlo_or_helo_needed:
-                logger.info("Starting TLS...")
-                try:
-                    await smtp.starttls()
-                except aiosmtplib.SMTPException as tls_error:
-                    # If STARTTLS fails because TLS already active, continue
-                    logger.warning(f"STARTTLS warning: {str(tls_error)}")
-            
-            logger.info("Logging in...")
+            # Login with credentials (UseDefaultCredentials: false)
+            logger.info("Authenticating...")
             await smtp.login(SMTP_USER, SMTP_PASSWORD)
+            logger.info("Authentication successful")
             
-            logger.info("Sending message...")
+            # Send message
+            logger.info("Sending email...")
             await smtp.send_message(message)
+            logger.info("Email sent successfully")
             
-            logger.info("Closing connection...")
             await smtp.quit()
             
             logger.info(f"Contact form email sent successfully from {form.email}")
