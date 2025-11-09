@@ -303,7 +303,7 @@ class APITester:
             self.log_result("Estate Detail - Cover URL", False, "coverUrl field missing from estate detail")
         
         self.log_result("Estate Detail Content", True, 
-            f"Estate detail retrieved: {estate_item.get('Name', 'Unknown')}")
+            f"Estate detail retrieved: {estate_item.get('name', 'Unknown')}")
     
     def test_image_accessibility(self):
         """Test if cover images are accessible"""
