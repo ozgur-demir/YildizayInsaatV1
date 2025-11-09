@@ -70,6 +70,46 @@ const News = () => {
     };
   }, [newsArticles]);
 
+  // Handle news click to show modal
+  const handleNewsClick = async (article) => {
+    if (!article.id) return;
+    
+    setSelectedNews(article);
+    setModalLoading(true);
+    
+    try {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const response = await fetch(`${backendUrl}/api/content/blogs/${article.id}`);
+      
+      if (response.ok) {
+        const result = await response.json();
+        setNewsDetail(result.data);
+      } else {
+        setNewsDetail(null);
+      }
+    } catch (err) {
+      console.error('Error fetching news detail:', err);
+      setNewsDetail(null);
+    } finally {
+      setModalLoading(false);
+    }
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setSelectedNews(null);
+    setNewsDetail(null);
+  };
+
+  // Close modal on ESC key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') closeModal();
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
   const getFallbackNews = () => [
     {
       title: 'Yeni Modern Rezidans Projemiz Başlıyor',
