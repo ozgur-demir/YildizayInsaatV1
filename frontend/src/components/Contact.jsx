@@ -73,14 +73,52 @@ const Contact = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
 
     if (Object.keys(newErrors).length === 0) {
-      alert('Teşekkür ederiz! Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.');
-      setFormData({ name: '', phone: '', email: '', message: '' });
-      setErrors({});
+      setIsSubmitting(true);
+      setSubmitMessage({ type: '', text: '' });
+      
+      try {
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+        const response = await fetch(`${backendUrl}/api/contact/send`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setSubmitMessage({
+            type: 'success',
+            text: result.message || 'Teşekkür ederiz! Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.'
+          });
+          setFormData({ name: '', phone: '', email: '', message: '' });
+          setErrors({});
+        } else {
+          setSubmitMessage({
+            type: 'error',
+            text: result.detail || 'Bir hata oluştu. Lütfen daha sonra tekrar deneyin.'
+          });
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        setSubmitMessage({
+          type: 'error',
+          text: 'Bağlantı hatası. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.'
+        });
+      } finally {
+        setIsSubmitting(false);
+        // Clear message after 5 seconds
+        setTimeout(() => {
+          setSubmitMessage({ type: '', text: '' });
+        }, 5000);
+      }
     } else {
       setErrors(newErrors);
     }
