@@ -144,8 +144,7 @@ const Contact = () => {
               <div>
                 <h4 className="font-bold text-gray-800 mb-2">E-Posta</h4>
                 <p className="text-gray-600 leading-relaxed">
-                  info@yildizay.com<br />
-                  iletisim@yildizay.com
+                  info@yildizay.com.tr
                 </p>
               </div>
             </div>
