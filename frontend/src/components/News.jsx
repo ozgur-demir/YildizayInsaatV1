@@ -173,9 +173,11 @@ const News = () => {
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <span className="absolute top-4 right-4 bg-gradient-to-r from-[hsl(355,65%,50%)] to-[hsl(355,65%,42%)] text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg">
-                    {article.date}
-                  </span>
+                  {article.date && (
+                    <span className="absolute top-4 right-4 bg-gradient-to-r from-[hsl(355,65%,50%)] to-[hsl(355,65%,42%)] text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-lg">
+                      {article.date}
+                    </span>
+                  )}
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[hsl(355,65%,45%)] transition-colors">
