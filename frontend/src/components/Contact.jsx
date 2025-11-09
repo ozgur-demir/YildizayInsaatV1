@@ -242,24 +242,25 @@ const Contact = () => {
                 <label htmlFor="phone" className="block text-gray-800 font-semibold mb-2">
                   Telefon *
                 </label>
-                <InputMask
-                  mask="+90 (999) 999 9999"
+                <PhoneInput
+                  country={'tr'}
                   value={formData.phone}
-                  onChange={handleChange}
+                  onChange={(phone) => setFormData({ ...formData, phone: '+' + phone })}
+                  inputProps={{
+                    name: 'phone',
+                    required: true,
+                    autoFocus: false
+                  }}
+                  containerClass="phone-input-container"
+                  inputClass={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(4,75%,50%)]/20 ${
+                    errors.phone ? 'border-red-500' : 'border-gray-200 focus:border-[hsl(4,75%,50%)]'
+                  }`}
+                  buttonClass="border-gray-200"
+                  dropdownClass="phone-dropdown"
+                  enableSearch={true}
+                  searchPlaceholder="Ülke ara..."
                   placeholder="+90 (5__) ___ ____"
-                >
-                  {(inputProps) => (
-                    <input
-                      {...inputProps}
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(4,75%,50%)]/20 ${
-                        errors.phone ? 'border-red-500' : 'border-gray-200 focus:border-[hsl(4,75%,50%)]'
-                      }`}
-                    />
-                  )}
-                </InputMask>
+                />
                 {errors.phone && <p className="mt-2 text-sm text-red-500">{errors.phone}</p>}
               </div>
 
