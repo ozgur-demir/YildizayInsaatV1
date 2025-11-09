@@ -10,14 +10,16 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(tags=["contact"])
 
-# SMTP Configuration - GoDaddy Settings
-SMTP_HOST = "smtpout.secureserver.net"
+# SMTP Configuration - Yildizay Mail Server
+SMTP_HOST = "mail.yildizay.com.tr"
 SMTP_PORT = 587
-SMTP_USER = "info@ozdsystems.com"
-SMTP_PASSWORD = "Konsopia123@"
-SMTP_FROM = "info@ozdsystems.com"
+SMTP_USER = "noreply@yildizay.com.tr"
+SMTP_PASSWORD = "O1es9Lz@_lB3@V@6"
+SMTP_FROM = "noreply@yildizay.com.tr"
+SMTP_FROM_NAME = "Yildizay WebApp"
 RECIPIENTS = ["sahin@yildizay.com.tr", "info@csyolu.com"]
-SMTP_SSL_ENABLE = False  # emailSSLEnable: false
+SMTP_SSL_ENABLE = False  # EnableSsl: false
+USE_DEFAULT_CREDENTIALS = False  # UseDefaultCredentials: false
 
 class ContactForm(BaseModel):
     name: str
