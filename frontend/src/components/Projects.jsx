@@ -337,43 +337,43 @@ const Projects = () => {
                       
                       {/* Image Counter */}
                       <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
-                        {currentImageIndex + 1} / {projectDetail.item.medias.length}
+                        {currentImageIndex + 1} / {projectDetail.medias.length}
                       </div>
                       
                       {/* Overlay with Title */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                       <div className="absolute bottom-6 left-6 right-6">
                         <h2 className="text-3xl font-bold text-white mb-2">
-                          {projectDetail.item.name}
+                          {projectDetail.name}
                         </h2>
-                        {projectDetail.item?.location && (
+                        {projectDetail.location && (
                           <div className="flex items-center text-white/90">
                             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                             </svg>
-                            <span className="font-medium">{projectDetail.item.location}</span>
+                            <span className="font-medium">{projectDetail.location}</span>
                           </div>
                         )}
                       </div>
                     </div>
-                  ) : projectDetail.item?.coverUrl && (
+                  ) : projectDetail.coverUrl && (
                     <div className="relative h-72 overflow-hidden rounded-t-2xl">
                       <img 
-                        src={projectDetail.item.coverUrl} 
-                        alt={projectDetail.item.name} 
+                        src={projectDetail.coverUrl} 
+                        alt={projectDetail.name} 
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                       <div className="absolute bottom-6 left-6 right-6">
                         <h2 className="text-3xl font-bold text-white mb-2">
-                          {projectDetail.item.name}
+                          {projectDetail.name}
                         </h2>
-                        {projectDetail.item?.location && (
+                        {projectDetail.location && (
                           <div className="flex items-center text-white/90">
                             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                             </svg>
-                            <span className="font-medium">{projectDetail.item.location}</span>
+                            <span className="font-medium">{projectDetail.location}</span>
                           </div>
                         )}
                       </div>
