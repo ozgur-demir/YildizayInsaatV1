@@ -242,25 +242,43 @@ const Contact = () => {
                 <label htmlFor="phone" className="block text-gray-800 font-semibold mb-2">
                   Telefon *
                 </label>
-                <PhoneInput
-                  country={'tr'}
-                  value={formData.phone}
-                  onChange={(phone) => setFormData({ ...formData, phone: '+' + phone })}
-                  inputProps={{
-                    name: 'phone',
-                    required: true,
-                    autoFocus: false
-                  }}
-                  containerClass="phone-input-container"
-                  inputClass={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-[hsl(4,75%,50%)]/20 ${
-                    errors.phone ? 'border-red-500' : 'border-gray-200 focus:border-[hsl(4,75%,50%)]'
-                  }`}
-                  buttonClass="border-gray-200"
-                  dropdownClass="phone-dropdown"
-                  enableSearch={true}
-                  searchPlaceholder="Ülke ara..."
-                  placeholder="+90 (5__) ___ ____"
-                />
+                <div className="phone-input-wrapper">
+                  <PhoneInput
+                    country={'tr'}
+                    value={formData.phone}
+                    onChange={(phone) => setFormData({ ...formData, phone: '+' + phone })}
+                    inputProps={{
+                      name: 'phone',
+                      required: true,
+                      autoFocus: false
+                    }}
+                    containerStyle={{
+                      width: '100%'
+                    }}
+                    inputStyle={{
+                      width: '100%',
+                      height: '48px',
+                      fontSize: '16px',
+                      paddingLeft: '48px',
+                      borderRadius: '0.5rem',
+                      border: errors.phone ? '2px solid rgb(239, 68, 68)' : '2px solid rgb(229, 231, 235)',
+                      transition: 'all 0.2s'
+                    }}
+                    buttonStyle={{
+                      borderRadius: '0.5rem 0 0 0.5rem',
+                      border: errors.phone ? '2px solid rgb(239, 68, 68)' : '2px solid rgb(229, 231, 235)',
+                      borderRight: 'none',
+                      backgroundColor: 'white'
+                    }}
+                    dropdownStyle={{
+                      borderRadius: '0.5rem',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                    }}
+                    enableSearch={true}
+                    searchPlaceholder="Ülke ara..."
+                    placeholder="5__ ___ ____"
+                  />
+                </div>
                 {errors.phone && <p className="mt-2 text-sm text-red-500">{errors.phone}</p>}
               </div>
 
