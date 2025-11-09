@@ -267,18 +267,18 @@ const News = () => {
                       </div>
                     )}
 
-                    {/* Full Content */}
-                    {newsDetail.details?.content && (
+                    {/* Full Content (details is an ARRAY) */}
+                    {newsDetail.details && newsDetail.details.length > 0 && newsDetail.details[0]?.content && (
                       <div className="mb-6">
                         <div 
                           className="text-gray-600 leading-relaxed prose max-w-none"
-                          dangerouslySetInnerHTML={{ __html: newsDetail.details.content }}
+                          dangerouslySetInnerHTML={{ __html: newsDetail.details[0].content }}
                         />
                       </div>
                     )}
 
                     {/* Description (fallback if details.content not available) */}
-                    {!newsDetail.details?.content && newsDetail.desc && (
+                    {(!newsDetail.details || newsDetail.details.length === 0 || !newsDetail.details[0]?.content) && newsDetail.desc && (
                       <div className="mb-6">
                         <div 
                           className="text-gray-600 leading-relaxed prose max-w-none"
