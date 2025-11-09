@@ -83,8 +83,16 @@ const News = () => {
       
       if (response.ok) {
         const result = await response.json();
-        setNewsDetail(result.data);
+        console.log('Blog detail response:', result);
+        
+        if (result.data) {
+          setNewsDetail(result.data);
+        } else {
+          console.error('No data in response');
+          setNewsDetail(null);
+        }
       } else {
+        console.error('Blog detail fetch failed:', response.status, response.statusText);
         setNewsDetail(null);
       }
     } catch (err) {
