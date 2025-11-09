@@ -16,3 +16,33 @@
 .App-link {
   color: #61dafb;
 }
+
+/* Phone Input Custom Styles */
+.phone-input-wrapper .react-tel-input .form-control:focus {
+  border-color: hsl(4, 75%, 50%) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+  outline: none !important;
+}
+
+.phone-input-wrapper .react-tel-input .flag-dropdown:focus,
+.phone-input-wrapper .react-tel-input .flag-dropdown.open {
+  border-color: hsl(4, 75%, 50%) !important;
+}
+
+.phone-input-wrapper .react-tel-input .flag-dropdown:hover {
+  background-color: rgb(249, 250, 251);
+}
+
+.phone-input-wrapper .react-tel-input .country-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.phone-input-wrapper .react-tel-input .country-list .country:hover {
+  background-color: rgb(254, 242, 242);
+}
+
+.phone-input-wrapper .react-tel-input .country-list .country.highlight {
+  background-color: hsl(4, 75%, 50%);
+  color: white;
+}
