@@ -340,16 +340,27 @@ const Projects = () => {
                     {/* Short Description */}
                     {projectDetail.item?.shortDesc && (
                       <div className="mb-6">
-                        <p className="text-lg text-gray-700 leading-relaxed">
+                        <p className="text-lg text-gray-700 leading-relaxed font-medium">
                           {projectDetail.item.shortDesc}
                         </p>
                       </div>
                     )}
 
-                    {/* Description */}
-                    {projectDetail.item?.desc && (
+                    {/* Details Content - Full Description */}
+                    {projectDetail.details?.content && (
                       <div className="mb-6">
                         <h3 className="text-xl font-bold text-gray-800 mb-3">Proje Detayları</h3>
+                        <div 
+                          className="text-gray-600 leading-relaxed prose max-w-none"
+                          dangerouslySetInnerHTML={{ __html: projectDetail.details.content }}
+                        />
+                      </div>
+                    )}
+
+                    {/* Description (fallback if details.content not available) */}
+                    {!projectDetail.details?.content && projectDetail.item?.desc && (
+                      <div className="mb-6">
+                        <h3 className="text-xl font-bold text-gray-800 mb-3">Açıklama</h3>
                         <div 
                           className="text-gray-600 leading-relaxed prose max-w-none"
                           dangerouslySetInnerHTML={{ __html: projectDetail.item.desc }}
