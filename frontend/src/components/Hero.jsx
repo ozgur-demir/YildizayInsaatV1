@@ -1,4 +1,28 @@
+import { useEffect, useState } from 'react';
+
 const Hero = () => {
+  const [featuredProject, setFeaturedProject] = useState(null);
+
+  useEffect(() => {
+    const fetchFeaturedProject = async () => {
+      try {
+        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+        const response = await fetch(`${backendUrl}/api/content/estates/featured`);
+        
+        if (response.ok) {
+          const result = await response.json();
+          if (result.data) {
+            setFeaturedProject(result.data);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching featured project:', err);
+      }
+    };
+
+    fetchFeaturedProject();
+  }, []);
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -29,7 +53,7 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div className="text-left">
-            {/* Badge - More appropriate for new company */}
+            {/* Badge */}
             <div className="inline-flex items-center px-5 py-2.5 bg-[hsl(45,100%,55%)]/15 backdrop-blur-sm border border-[hsl(45,100%,55%)]/30 rounded-full mb-8 animate-fade-in-up">
               <div className="w-2 h-2 bg-[hsl(45,100%,55%)] rounded-full mr-3 animate-pulse"></div>
               <span className="text-[hsl(45,100%,60%)] text-sm font-bold tracking-wider">PROFESYONEL İNŞAAT HİZMETLERİ</span>
@@ -76,7 +100,7 @@ const Hero = () => {
               </button>
             </div>
 
-            {/* Value Propositions - Instead of stats */}
+            {/* Value Propositions */}
             <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/20 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
               <div className="text-center">
                 <div className="w-14 h-14 mx-auto mb-3 bg-[hsl(45,100%,55%)]/15 rounded-xl flex items-center justify-center">
@@ -105,39 +129,39 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Content - Simpler card */}
-          <div className="hidden lg:block">
-            <div className="relative animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-              {/* Glassmorphism Card */}
-              <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl animate-float">
-                {/* Glows */}
-                <div className="absolute -top-6 -right-6 w-32 h-32 bg-[hsl(45,100%,55%)] rounded-full opacity-20 blur-3xl"></div>
-                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[hsl(355,65%,50%)] rounded-full opacity-15 blur-3xl"></div>
-                
-                <img 
-                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931" 
-                  alt="Construction Excellence" 
-                  className="w-full h-80 object-cover rounded-xl mb-6 ring-2 ring-white/10"
-                />
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/80 text-sm font-medium">Son Projemiz</span>
-                    <span className="px-3 py-1 bg-[hsl(45,100%,55%)]/20 text-[hsl(45,100%,60%)] text-xs font-bold rounded-full border border-[hsl(45,100%,55%)]/30">2024</span>
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Modern Rezidans Kompleksi</h3>
-                  <p className="text-white/70 text-sm leading-relaxed">Üstün kalite standartları ve modern mimari tasarım ile tamamlanan lüks yaşam alanı projesi.</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                    <div className="flex items-center space-x-2">
-                      <svg className="w-5 h-5 text-[hsl(45,100%,55%)]" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                      <span className="text-white/80 text-sm font-semibold">Premium Kalite</span>
+          {/* Right Content - Featured Project from API */}
+          {featuredProject && (
+            <div className="hidden lg:block">
+              <div className="relative animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                {/* Glassmorphism Card */}
+                <div className="relative bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl animate-float">
+                  {/* Glows */}
+                  <div className="absolute -top-6 -right-6 w-32 h-32 bg-[hsl(45,100%,55%)] rounded-full opacity-20 blur-3xl"></div>
+                  <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[hsl(355,65%,50%)] rounded-full opacity-15 blur-3xl"></div>
+                  
+                  <img 
+                    src={featuredProject.item?.coverUrl || 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1931'} 
+                    alt={featuredProject.item?.name || 'Featured Project'} 
+                    className="w-full h-80 object-cover rounded-xl mb-6 ring-2 ring-white/10"
+                  />
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-white/80 text-sm font-medium">
+                        {featuredProject.itemDetail?.meta?.content || 'Öne Çıkan Proje'}
+                      </span>
+                      <span className="px-3 py-1 bg-[hsl(45,100%,55%)]/20 text-[hsl(45,100%,60%)] text-xs font-bold rounded-full border border-[hsl(45,100%,55%)]/30">2024</span>
                     </div>
+                    <h3 className="text-2xl font-bold text-white">
+                      {featuredProject.item?.name || 'Proje Adı'}
+                    </h3>
+                    <p className="text-white/70 text-sm leading-relaxed">
+                      {featuredProject.item?.shortDesc || 'Proje açıklaması burada gösterilecek.'}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
