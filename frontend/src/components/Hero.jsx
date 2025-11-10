@@ -38,8 +38,7 @@ const Hero = () => {
     setCurrentImageIndex(0);
     
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-      const response = await fetch(`${backendUrl}/api/content/estates/${featuredProject.id}`);
+      const response = await fetch(api(`/api/content/estates/${featuredProject.id}`));
       
       if (response.ok) {
         const result = await response.json();
