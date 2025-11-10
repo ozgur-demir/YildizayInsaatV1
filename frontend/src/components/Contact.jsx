@@ -56,8 +56,12 @@ const Contact = () => {
 
     if (!formData.phone.trim()) {
       newErrors.phone = 'Telefon alanı zorunludur';
-    } else if (!/^[0-9]{10,11}$/.test(formData.phone.replace(/[\s-]/g, ''))) {
-      newErrors.phone = 'Geçerli bir telefon numarası giriniz';
+    } else {
+      // Remove all non-digit characters and check if we have at least 10 digits
+      const digitsOnly = formData.phone.replace(/\D/g, '');
+      if (digitsOnly.length < 10 || digitsOnly.length > 15) {
+        newErrors.phone = 'Geçerli bir telefon numarası giriniz';
+      }
     }
 
     if (!formData.email.trim()) {
