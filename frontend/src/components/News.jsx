@@ -78,8 +78,7 @@ const News = () => {
     setModalLoading(true);
     
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-      const response = await fetch(`${backendUrl}/api/content/blogs/${article.id}`);
+      const response = await fetch(api(`/api/content/blogs/${article.id}`));
       
       if (response.ok) {
         const result = await response.json();
