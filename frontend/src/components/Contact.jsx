@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { api } from '../config/api';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
