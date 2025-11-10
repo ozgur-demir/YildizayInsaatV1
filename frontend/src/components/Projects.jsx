@@ -19,17 +19,15 @@ const Projects = () => {
     const fetchProjects = async () => {
       setLoading(true);
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-        let endpoint = `${backendUrl}/api/content/estates`;
-        
         // Determine endpoint based on filter
+        let endpoint = '/api/content/estates';
         if (activeFilter === 'completed') {
-          endpoint = `${backendUrl}/api/content/estates/completed`;
+          endpoint = '/api/content/estates/completed';
         } else if (activeFilter === 'ongoing') {
-          endpoint = `${backendUrl}/api/content/estates/ongoing`;
+          endpoint = '/api/content/estates/ongoing';
         }
         
-        const response = await fetch(endpoint);
+        const response = await fetch(api(endpoint));
         
         if (!response.ok) {
           throw new Error('Failed to fetch projects');
