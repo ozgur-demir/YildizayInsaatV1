@@ -13,8 +13,7 @@ const Hero = () => {
   useEffect(() => {
     const fetchFeaturedProject = async () => {
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-        const response = await fetch(`${backendUrl}/api/content/estates/featured`);
+        const response = await fetch(api('/api/content/estates/featured'));
         
         if (response.ok) {
           const result = await response.json();
