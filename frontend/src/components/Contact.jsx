@@ -89,8 +89,7 @@ const Contact = () => {
       setSubmitMessage({ type: '', text: '' });
       
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-        const response = await fetch(`${backendUrl}/api/contact/send`, {
+        const response = await fetch(api('/api/contact/send'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
