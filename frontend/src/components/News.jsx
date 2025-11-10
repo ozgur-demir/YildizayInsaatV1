@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { api } from '../config/api';
 
 const News = () => {
   const [visibleCards, setVisibleCards] = useState([]);
