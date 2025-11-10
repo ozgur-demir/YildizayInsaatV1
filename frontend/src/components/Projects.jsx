@@ -91,8 +91,7 @@ const Projects = () => {
     setCurrentImageIndex(0);
     
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-      const response = await fetch(`${backendUrl}/api/content/estates/${project.id}`);
+      const response = await fetch(api(`/api/content/estates/${project.id}`));
       
       if (response.ok) {
         const result = await response.json();
