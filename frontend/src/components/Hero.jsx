@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { api } from '../config/api';
 
 const Hero = () => {
   const [featuredProject, setFeaturedProject] = useState(null);
