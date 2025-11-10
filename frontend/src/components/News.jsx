@@ -14,8 +14,7 @@ const News = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-        const response = await fetch(`${backendUrl}/api/content/blogs`);
+        const response = await fetch(api('/api/content/blogs'));
         
         if (!response.ok) {
           throw new Error('Failed to fetch news');
